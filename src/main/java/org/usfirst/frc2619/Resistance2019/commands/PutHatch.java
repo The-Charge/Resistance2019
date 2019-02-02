@@ -38,6 +38,7 @@ public class PutHatch extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.hatchers.HatchIt();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,6 +55,7 @@ public class PutHatch extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.hatchers.UnHatchIt();
     }
 
     // Called when another command which requires one or more of the same
