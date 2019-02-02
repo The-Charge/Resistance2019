@@ -72,5 +72,13 @@ public class Hatchers extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void HatchIt()
+    {
+        solenoid.set(true);      
+    }
+    public void UnHatchIt()
+    {
+        solenoid.set(false);      
+    }
 }
 
