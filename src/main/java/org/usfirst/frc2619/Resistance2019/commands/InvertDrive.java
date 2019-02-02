@@ -12,6 +12,9 @@
 package org.usfirst.frc2619.Resistance2019.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc2619.Resistance2019.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc2619.Resistance2019.subsystems.DriveTrain;
 
 /**
  *
@@ -37,6 +40,21 @@ public class InvertDrive extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
+        if(DriveTrain.isReversed == false)
+        {
+            DriveTrain.isReversed = true;
+            writeSmartDashboard("isReversed is true ");
+        }
+        else
+        {
+            DriveTrain.isReversed = false;
+            writeSmartDashboard("isReversed is false");
+        }
+    }
+
+    public void writeSmartDashboard(String message)
+    {
+        SmartDashboard.putString("InvertDrive Status: ", message);
     }
 
 }

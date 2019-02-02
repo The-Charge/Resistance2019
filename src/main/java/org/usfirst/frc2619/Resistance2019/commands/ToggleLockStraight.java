@@ -12,6 +12,7 @@
 package org.usfirst.frc2619.Resistance2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2619.Resistance2019.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -37,6 +38,16 @@ public class ToggleLockStraight extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        if(Robot.driveTrain.driveLocked==false)
+        {
+            Robot.driveTrain.driveLocked = true;
+            writeSmartDashboard("driveLocked is true");
+        }
+        else
+        {
+            Robot.driveTrain.driveLocked = false;
+            writeSmartDashboard("driveLocked is false");
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -59,5 +70,10 @@ public class ToggleLockStraight extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    }
+
+    public void writeSmartDashboard(String message)
+    {
+        SmartDashboard.putString("driveLocked status: ",message);
     }
 }

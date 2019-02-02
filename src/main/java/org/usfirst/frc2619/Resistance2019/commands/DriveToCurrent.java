@@ -42,27 +42,34 @@ public class DriveToCurrent extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	this.setTimeout(1);
+		Robot.driveTrain.initSpeedMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	Robot.driveTrain.setSpeedPID(m_speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+    	return isTimedOut() && Robot.driveTrain.getCurrent() > m_maxCurrent;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	Robot.driveTrain.stop();
+    	Robot.driveTrain.setPercentVBus();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }
+
