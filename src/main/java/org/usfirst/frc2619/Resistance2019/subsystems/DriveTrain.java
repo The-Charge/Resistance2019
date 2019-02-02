@@ -74,7 +74,7 @@ public class DriveTrain extends Subsystem {
 	public final static int MAX_MOTION_MAGIC_DISTANCE = 500;
     
     public final double TIMEOUT = 0.002;
-    private final AHRS ahrs = new AHRS(Port.kMXP);
+    private static final AHRS ahrs = new AHRS(Port.kMXP);
     public double turn_outer_speed;
 	public final double TURN_OUTER_SPEED_DEFAULT = 0.5;
 	public double turn_inner_speed;
@@ -264,10 +264,23 @@ public class DriveTrain extends Subsystem {
     
     public double getYaw() {
     	return ahrs.getYaw();
-    }
+	}
+	
+	public static AHRS getGyro() {
+		return ahrs;
+	}
+
+	public static double getGyroPID(){
+		return ahrs.pidGet();
+	}
     
     public void writeDashboardValues() {
     	SmartDashboard.putBoolean("Inverted",isReversed);
-    }
+	}
+	
+	public void writePIDs(double output){
+		leftFrontMotor.pidWrite(output);
+		rightFrontMotor.pidWrite(-output);
+	}
 }
 
