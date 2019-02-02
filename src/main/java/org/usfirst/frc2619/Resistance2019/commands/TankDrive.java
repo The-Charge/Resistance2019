@@ -12,7 +12,7 @@
 package org.usfirst.frc2619.Resistance2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2619.Resistance2019.Robot;
-
+import org.usfirst.frc2619.Resistance2019.MathUtil;
 /**
  *
  */
@@ -38,11 +38,18 @@ public class TankDrive extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.driveTrain.setPercentVBus();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        double rightSpeed, leftSpeed;
+    	rightSpeed = -Robot.oi.rightJoystick.getY();
+    	leftSpeed = -Robot.oi.leftJoystick.getY();
+    	rightSpeed = MathUtil.adjSpeed(rightSpeed);
+    	leftSpeed = MathUtil.adjSpeed(leftSpeed);
+    	Robot.driveTrain.run(leftSpeed, rightSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,11 +61,14 @@ public class TankDrive extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.driveTrain.stop();
+    	Robot.driveTrain.setPercentVBus();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }
