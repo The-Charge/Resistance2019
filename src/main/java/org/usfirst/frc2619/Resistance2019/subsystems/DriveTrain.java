@@ -282,5 +282,10 @@ public class DriveTrain extends Subsystem {
 		leftFrontMotor.pidWrite(output);
 		rightFrontMotor.pidWrite(-output);
 	}
+
+	public void writeIndivPIDs(double outputl, double outputr){
+		leftFrontMotor.pidWrite(outputl);
+		rightFrontMotor.pidWrite(-outputr);
+	}
 }
 
