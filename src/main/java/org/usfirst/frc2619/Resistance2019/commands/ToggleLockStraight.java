@@ -41,12 +41,10 @@ public class ToggleLockStraight extends Command {
         if(Robot.driveTrain.driveLocked==false)
         {
             Robot.driveTrain.driveLocked = true;
-            writeSmartDashboard("driveLocked is true");
         }
         else
         {
             Robot.driveTrain.driveLocked = false;
-            writeSmartDashboard("driveLocked is false");
         }
     }
 
@@ -72,8 +70,4 @@ public class ToggleLockStraight extends Command {
     protected void interrupted() {
     }
 
-    public void writeSmartDashboard(String message)
-    {
-        SmartDashboard.putString("driveLocked status: ",message);
-    }
 }

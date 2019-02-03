@@ -43,18 +43,13 @@ public class InvertDrive extends InstantCommand {
         if(DriveTrain.isReversed == false)
         {
             DriveTrain.isReversed = true;
-            writeSmartDashboard("isReversed is true ");
         }
         else
         {
             DriveTrain.isReversed = false;
-            writeSmartDashboard("isReversed is false");
         }
     }
 
-    public void writeSmartDashboard(String message)
-    {
-        SmartDashboard.putString("InvertDrive Status: ", message);
-    }
+
 
 }
