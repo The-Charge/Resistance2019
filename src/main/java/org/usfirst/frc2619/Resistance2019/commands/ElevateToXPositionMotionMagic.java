@@ -42,6 +42,7 @@ public class ElevateToXPositionMotionMagic extends Command {
     protected void initialize() {
         Robot.elevator.brakeOff();
         Robot.elevator.MotionMagicInit(m_position);
+        // TODO: Add a timeout
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,6 +53,7 @@ public class ElevateToXPositionMotionMagic extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        // TODO: Check for timeout
         return Robot.elevator.isAtPIDDestination() || !Robot.elevator.movable;
     }
 

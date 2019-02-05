@@ -98,6 +98,7 @@ public class Intake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    // TODO: Are we using this method?
     public void run(double power){
         if (power < 0){
             centeringRoller.set(power*CENTER_OUTWARD_MULTIPLIER);
@@ -118,7 +119,9 @@ public class Intake extends Subsystem {
     public void initSpeedMode() {    	
     	centeringRoller.set(ControlMode.Velocity, 0);
     	feedRoller.set(ControlMode.Velocity, 0);
-    	
+        
+        // TODO: Move 1 to constant up top (PID slot)
+        // Based on the selectProfileSlot below, I believe you want to use `CONSTANT_SLOT_SPEED_MODE`
     	centeringRoller.config_kP(1, speedP, TIMEOUT_MS);
     	centeringRoller.config_kI(1, speedI, TIMEOUT_MS);
     	centeringRoller.config_kD(1, speedD, TIMEOUT_MS);
@@ -133,7 +136,9 @@ public class Intake extends Subsystem {
     	feedRoller.selectProfileSlot(CONSTANT_SLOT_SPEED_MODE, 0);
     }
 
+    // TODO: Rename `setSpeed` or the method so it's clear that it's a % speed
     public void setSpeedPID(double setSpeed) {
+        // TODO: Cap setSpeed to [-1.0 - 1.0] 
 		centeringRoller.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
 		feedRoller.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
 	}

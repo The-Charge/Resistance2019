@@ -70,6 +70,9 @@ public class Elevator extends Subsystem {
     public double MotionMagicF = MOTION_MAGIC_F_CONSTANT;
     public int MotionMagicVelocity = MOTION_MAGIC_VELOCITY_CONSTANT;
     public int MotionMagicAcceleration = MOTION_MAGIC_ACCELERATION_CONSTANT;
+	//TODO: Give this a better name 
+	// a) It's a target distance, not the current distance
+	// b) What are the units?
     public double MotionMagicDistance;
 
     public boolean movable = true;
@@ -116,6 +119,7 @@ public class Elevator extends Subsystem {
     public void initSpeedPercentageMode() {
 		motor.set(ControlMode.Velocity, 0);
 
+		// TODO: Move 1 to a constant up top (slot position)
 		motor.selectProfileSlot(1, 0);
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
 		if (isUp)
@@ -156,6 +160,7 @@ public class Elevator extends Subsystem {
 		SpeedF = SmartDashboard.getNumber("ShooterSpeedF", SPEED_F_CONSTANT);
 
 		// set CANTalon PIDs
+		// TODO: Move the 1 to a constant up top (PID slot)
 		motor.config_kP(1, SpeedP, TIMEOUT_MS);
 		motor.config_kI(1, SpeedI, TIMEOUT_MS);
 		motor.config_kD(1, SpeedD, TIMEOUT_MS);
@@ -217,9 +222,13 @@ public class Elevator extends Subsystem {
     
     public void MotionMagicInit(double percentDistance) {
     	if (movable) {
+			// TODO: Cap percentDistance to 0.0 - 1.0 for safety
+			// NOTE: Would move this down below where you do the math for MotionMagicDistance
 	    	MotionMagicDistance = percentDistance;
 	    	motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
-	    	
+			
+			// TODO: Verify 2 is usable (don't think it is)
+			// TODO: Move 2 to a constant up top (PID slot)
 	    	motor.selectProfileSlot(2,0);
 	    	
 	    	motor.config_kP(2, MotionMagicP, TIMEOUT_MS);
