@@ -49,7 +49,7 @@ public class Intake extends Subsystem {
 	public double speedD = SPEED_D_CONSTANT;
     public double speedF = SPEED_F_CONSTANT;
     
-    public final static int CONSTANT_SLOT_SPEED_MODE = 1;
+    public final static int PID_SLOT_SPEED_MODE = 1;
     
     public double CENTER_INWARD_MULTIPLIER = 1;
     public double FEED_INWARD_MULTIPLIER = 1;
@@ -98,17 +98,6 @@ public class Intake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void run(double power){
-        if (power < 0){
-            centeringRoller.set(power*CENTER_OUTWARD_MULTIPLIER);
-            feedRoller.set(power*CENTER_OUTWARD_MULTIPLIER);  
-        }
-        else{
-            centeringRoller.set(power*CENTER_INWARD_MULTIPLIER);
-            feedRoller.set(power*CENTER_INWARD_MULTIPLIER);  
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-    }
-
     
     public void stop(){
         centeringRoller.set(0);
@@ -118,22 +107,22 @@ public class Intake extends Subsystem {
     public void initSpeedMode() {    	
     	centeringRoller.set(ControlMode.Velocity, 0);
     	feedRoller.set(ControlMode.Velocity, 0);
-    	
-    	centeringRoller.config_kP(1, speedP, TIMEOUT_MS);
-    	centeringRoller.config_kI(1, speedI, TIMEOUT_MS);
-    	centeringRoller.config_kD(1, speedD, TIMEOUT_MS);
-    	centeringRoller.config_kF(1, speedF, TIMEOUT_MS);
+        
+        centeringRoller.config_kP(PID_SLOT_SPEED_MODE, speedP, TIMEOUT_MS);
+    	centeringRoller.config_kI(PID_SLOT_SPEED_MODE, speedI, TIMEOUT_MS);
+    	centeringRoller.config_kD(PID_SLOT_SPEED_MODE, speedD, TIMEOUT_MS);
+    	centeringRoller.config_kF(PID_SLOT_SPEED_MODE, speedF, TIMEOUT_MS);
 
-    	feedRoller.config_kP(1, speedP, TIMEOUT_MS);
-    	feedRoller.config_kI(1, speedI, TIMEOUT_MS);
-    	feedRoller.config_kD(1, speedD, TIMEOUT_MS);
-    	feedRoller.config_kF(1, speedF, TIMEOUT_MS);
+    	feedRoller.config_kP(PID_SLOT_SPEED_MODE, speedP, TIMEOUT_MS);
+    	feedRoller.config_kI(PID_SLOT_SPEED_MODE, speedI, TIMEOUT_MS);
+    	feedRoller.config_kD(PID_SLOT_SPEED_MODE, speedD, TIMEOUT_MS);
+    	feedRoller.config_kF(PID_SLOT_SPEED_MODE, speedF, TIMEOUT_MS);
     	
-    	centeringRoller.selectProfileSlot(CONSTANT_SLOT_SPEED_MODE, 0);
-    	feedRoller.selectProfileSlot(CONSTANT_SLOT_SPEED_MODE, 0);
+    	centeringRoller.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
+    	feedRoller.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
     }
 
-    public void setSpeedPID(double setSpeed) {
+    public void setPercentSpeedPID(double setSpeed) {
 		centeringRoller.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
 		feedRoller.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
 	}

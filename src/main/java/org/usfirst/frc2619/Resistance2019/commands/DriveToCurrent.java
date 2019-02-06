@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2619.Resistance2019.Robot;
 
 /**
- *
+ @param      m_speed        The speed in percent.
+ @param      m_maxCurrent   The current threshold is amps.
  */
 public class DriveToCurrent extends Command {
 
@@ -49,13 +50,13 @@ public class DriveToCurrent extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.driveTrain.setSpeedPID(m_speed);
+    	Robot.driveTrain.setPercentSpeedPID(m_speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-    	return isTimedOut() && Robot.driveTrain.getCurrent() > m_maxCurrent;
+    	return isTimedOut() && Robot.driveTrain.getCurrentAmps() > m_maxCurrent;
     }
 
     // Called once after isFinished returns true

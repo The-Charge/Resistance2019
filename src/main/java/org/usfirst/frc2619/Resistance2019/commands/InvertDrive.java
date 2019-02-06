@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2619.Resistance2019.subsystems.DriveTrain;
 
 /**
- *
+ * 
  */
 public class InvertDrive extends InstantCommand {
 
@@ -40,14 +40,7 @@ public class InvertDrive extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
-        if(DriveTrain.isReversed == false)
-        {
-            DriveTrain.isReversed = true;
-        }
-        else
-        {
-            DriveTrain.isReversed = false;
-        }
+        DriveTrain.isReversed = ! DriveTrain.isReversed;
     }
 
 

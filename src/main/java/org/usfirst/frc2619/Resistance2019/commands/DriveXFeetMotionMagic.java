@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2619.Resistance2019.Robot;
 
 /**
- @param      m_distance     the distance in feet to drive.
- @param      m_velocity     the velocity in feet per second to drive.
- @param      m_acceleration the acceleration in feet per second per second that is acceptable for driving.
+ * @param      m_distance     The distance in feet to drive.
+ * @param      m_velocity     The velocity in feet per second to drive.
+ * @param      m_acceleration The acceleration in feet per second per second that is acceptable for driving.
  */
 public class DriveXFeetMotionMagic extends Command {
 
@@ -50,6 +50,7 @@ public class DriveXFeetMotionMagic extends Command {
     		Robot.driveTrain.MotionMagicInit(m_distance);
     	else
     		Robot.driveTrain.MotionMagicInit(m_distance, m_velocity, m_acceleration);
+        this.setTimeout(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -60,7 +61,7 @@ public class DriveXFeetMotionMagic extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.driveTrain.isAtPIDDestination();
+        return Robot.driveTrain.isAtPIDDestination() || isTimedOut();
     }
 
     // Called once after isFinished returns true

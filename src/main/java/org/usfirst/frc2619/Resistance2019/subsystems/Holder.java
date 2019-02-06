@@ -74,16 +74,8 @@ public class Holder extends Subsystem {
     // here. Call these from Commands.
     public void HoldIt()
     {
-        if (isHolding)
-        {
-            solenoid.set(false);
-		    isHolding = false;
-        }
-        else
-        {
-            solenoid.set(true);
-		    isHolding = true;
-        }
+        isHolding = !isHolding;
+        solenoid.set(isHolding);
     }
 }
 

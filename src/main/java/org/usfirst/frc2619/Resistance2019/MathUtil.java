@@ -16,6 +16,12 @@ public class MathUtil {
 		return direction;
 	}	//return +1 if direction is CW, -1 if CCW - copied from SteamBot
 
+	public static double Clamp(double input, double min, double max){
+		input = input < min ? min : input;
+		input = input > max ? max : input;
+		return input;
+	}
+
     public static double adjSpeed(double speed) {
     	double dB = SmartDashboard.getNumber("Deadband", .1);
     	double root = SmartDashboard.getNumber("Root", 1);

@@ -12,6 +12,7 @@
 package org.usfirst.frc2619.Resistance2019.subsystems;
 
 
+import org.usfirst.frc2619.Resistance2019.MathUtil;
 import org.usfirst.frc2619.Resistance2019.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,7 +29,8 @@ import edu.wpi.first.wpilibj.Solenoid;
     import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 /**
- *
+ * @param MotionMagicDistance The current target distance for Motion Magic in ticks.
+ * @param MAX_MOTION_MAGIC_DISTANCE The distance from the target in ticks that Motion Magic will accept.
  */
 public class Elevator extends Subsystem {
 
@@ -69,8 +71,11 @@ public class Elevator extends Subsystem {
     public double MotionMagicD = MOTION_MAGIC_D_CONSTANT;
     public double MotionMagicF = MOTION_MAGIC_F_CONSTANT;
     public int MotionMagicVelocity = MOTION_MAGIC_VELOCITY_CONSTANT;
-    public int MotionMagicAcceleration = MOTION_MAGIC_ACCELERATION_CONSTANT;
+	public int MotionMagicAcceleration = MOTION_MAGIC_ACCELERATION_CONSTANT;
+	public int MAX_MOTION_MAGIC_DISTANCE = 500;
     public double MotionMagicDistance;
+	public final static int PID_SLOT_SPEED_MODE = 1;
+	public final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 0;
 
     public boolean movable = true;
     public boolean isUp = false;
@@ -115,8 +120,7 @@ public class Elevator extends Subsystem {
     // here. Call these from Commands.
     public void initSpeedPercentageMode() {
 		motor.set(ControlMode.Velocity, 0);
-
-		motor.selectProfileSlot(1, 0);
+		motor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
 		if (isUp)
 			motor.configClosedloopRamp(0.5, TIMEOUT_MS);
@@ -155,11 +159,10 @@ public class Elevator extends Subsystem {
 		SpeedD = SmartDashboard.getNumber("ShooterSpeedD", SPEED_D_CONSTANT);
 		SpeedF = SmartDashboard.getNumber("ShooterSpeedF", SPEED_F_CONSTANT);
 
-		// set CANTalon PIDs
-		motor.config_kP(1, SpeedP, TIMEOUT_MS);
-		motor.config_kI(1, SpeedI, TIMEOUT_MS);
-		motor.config_kD(1, SpeedD, TIMEOUT_MS);
-		motor.config_kF(1, SpeedF, TIMEOUT_MS);
+		motor.config_kP(PID_SLOT_SPEED_MODE, SpeedP, TIMEOUT_MS);
+		motor.config_kI(PID_SLOT_SPEED_MODE, SpeedI, TIMEOUT_MS);
+		motor.config_kD(PID_SLOT_SPEED_MODE, SpeedD, TIMEOUT_MS);
+		motor.config_kF(PID_SLOT_SPEED_MODE, SpeedF, TIMEOUT_MS);
 	}
     
     public void writeDefaultDashboardValues() {
@@ -217,27 +220,28 @@ public class Elevator extends Subsystem {
     
     public void MotionMagicInit(double percentDistance) {
     	if (movable) {
-	    	MotionMagicDistance = percentDistance;
 	    	motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
+			
+	    	motor.selectProfileSlot(MOTION_MAGIC_SLOT_DISTANCE_MODE,0);
 	    	
-	    	motor.selectProfileSlot(2,0);
-	    	
-	    	motor.config_kP(2, MotionMagicP, TIMEOUT_MS);
-	    	motor.config_kI(2, MotionMagicI, TIMEOUT_MS);
-	    	motor.config_kD(2, MotionMagicD, TIMEOUT_MS);
-	    	motor.config_kF(2, MotionMagicF, TIMEOUT_MS);
+	    	motor.config_kP(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicP, TIMEOUT_MS);
+	    	motor.config_kI(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicI, TIMEOUT_MS);
+	    	motor.config_kD(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicD, TIMEOUT_MS);
+	    	motor.config_kF(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicF, TIMEOUT_MS);
 	    	
 	    	
 	    	motor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
 	    	motor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
 	    	
+			percentDistance = MathUtil.Clamp(percentDistance, 0, 1);
+	    	MotionMagicDistance = percentDistance;
 	    	MotionMagicDistance *= TICKS_TO_TOP;
 	    	motor.set(ControlMode.MotionMagic, MotionMagicDistance);
     	}
     }
     
     public boolean isAtPIDDestination() {
-		return (Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < 500);// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
+		return (Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < MAX_MOTION_MAGIC_DISTANCE);// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
 	}
 }
 
