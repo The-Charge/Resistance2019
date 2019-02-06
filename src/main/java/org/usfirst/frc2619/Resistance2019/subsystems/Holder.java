@@ -74,23 +74,8 @@ public class Holder extends Subsystem {
     // here. Call these from Commands.
     public void HoldIt()
     {
-        // TODO: This seems a bit strange to me.
-        // Every time you call this method, it'll do something different
-        // I'd prefer seeing 3 methods:
-        // 1 to hold
-        // 1 to release
-        // and 1 to get the status
-        // That way if we want a "while held" button, it's easier to debug the logic
-        if (isHolding)
-        {
-            solenoid.set(false);
-		    isHolding = false;
-        }
-        else
-        {
-            solenoid.set(true);
-		    isHolding = true;
-        }
+        isHolding = !isHolding;
+        solenoid.set(isHolding);
     }
 }
 

@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2619.Resistance2019.subsystems.DriveTrain;
 
 /**
- *
+ * 
  */
 public class InvertDrive extends InstantCommand {
 
@@ -40,20 +40,7 @@ public class InvertDrive extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
-        // TODO: Are we doing this while held or when pressed?
-        // If it's when pressed, this logic is "fine".
-        // If it's while held, it's not going to switch back when released...
-        
-        // TODO: If this logic is fine, switch it to one line using the ! operator
-        // ie: foo = !foo
-        if(DriveTrain.isReversed == false)
-        {
-            DriveTrain.isReversed = true;
-        }
-        else
-        {
-            DriveTrain.isReversed = false;
-        }
+        DriveTrain.isReversed = ! DriveTrain.isReversed;
     }
 
 
