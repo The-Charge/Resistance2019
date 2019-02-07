@@ -103,5 +103,16 @@ public class SensorBar extends Subsystem {
     public DigitalInput getSensor(int sensor){
         return sensBar[sensor];
     }
+
+    public boolean isOneSensed(){
+        boolean seesLine = false;
+        for (int x = 0; x <=4; x++){
+            if (sensBar[x].get()){
+                seesLine = true;
+                x = 5;
+            }
+        }
+        return seesLine;
+    }
 }
 
