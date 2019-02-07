@@ -172,8 +172,8 @@ public class DriveTrain extends Subsystem {
 				rightFrontMotor.set(rightSpeed);
 			} 
 			else {
-				leftFrontMotor.set(-1 * leftSpeed);
-				rightFrontMotor.set(-1 * rightSpeed);
+				leftFrontMotor.set(-1 * rightSpeed);
+				rightFrontMotor.set(-1 * leftSpeed);
 			}
 		} 
     	else if (!isReversed) {
@@ -181,8 +181,8 @@ public class DriveTrain extends Subsystem {
 			rightFrontMotor.set(rightSpeed);
 		} 
     	else {
-			leftFrontMotor.set(-1 * leftSpeed);
-			rightFrontMotor.set(-1 * rightSpeed);
+			leftFrontMotor.set(-1 * rightSpeed);
+			rightFrontMotor.set(-1 * leftSpeed);
 		}
     }
 
@@ -260,7 +260,7 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * @param setSpeed The target speed of the PID loop in percent.
 	 */
-    public void setSpeedPID(double setSpeed) {
+    public void setPercentSpeedPID(double setSpeed) {
 		setSpeed = MathUtil.Clamp(setSpeed, -1, 1);
 		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);

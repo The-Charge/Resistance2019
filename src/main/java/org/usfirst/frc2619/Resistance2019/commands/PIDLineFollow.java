@@ -120,7 +120,7 @@ public class PIDLineFollow extends PIDCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.driveTrain.getCurrent() > 10) end();
+        if (Robot.driveTrain.getCurrentAmps() > 10) end();
     }
 
     // Make this return true when this Command no longer needs to run execute()
