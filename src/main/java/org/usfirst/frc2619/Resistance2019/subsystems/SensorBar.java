@@ -91,15 +91,7 @@ public class SensorBar extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        boolean seesLine = false;
-        for(int x = 0; x < 5; x++){
-            if(sensBar[x].get() == true){
-                seesLine = true;
-                x = 5;
-            }
-        }
-
-        if (seesLine){
+        if (isOneSensed()){
             Robot.indicatorLights.lightOn();
         }
         else{
@@ -116,6 +108,18 @@ public class SensorBar extends Subsystem {
     // here. Call these from Commands.
     public DigitalInput getSensor(int sensor){
         return sensBar[sensor];
+    }
+
+    public boolean isOneSensed(){
+        boolean seesLine = false;
+        for(int x = 0; x < 5; x++){
+            if(sensBar[x].get() == true){
+                seesLine = true;
+                x = 5;
+            }
+        }
+
+        return seesLine;
     }
 }
 
