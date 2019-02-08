@@ -64,6 +64,7 @@ public class OI {
     public JoystickButton shiftLowBtn;
     public JoystickButton shiftHighBtn;
     public JoystickButton moveKickerBtn;
+    public JoystickButton tankDriveBtn;
     public Joystick leftJoystick;
     public JoystickButton elevateToBottomBtn;
     public JoystickButton elevatetoBallCollectBtn;
@@ -94,6 +95,8 @@ public class OI {
         elevateToBottomBtn.whileHeld(new ElevateToXPositionMotionMagic(0.1));
         leftJoystick = new Joystick(0);
         
+        tankDriveBtn = new JoystickButton(leftJoystick, 12);
+        tankDriveBtn.whenPressed(new TankDrive());
         moveKickerBtn = new JoystickButton(leftJoystick, 2);
         moveKickerBtn.whileHeld(new ExtendKicker());
         shiftHighBtn = new JoystickButton(leftJoystick, 6);
