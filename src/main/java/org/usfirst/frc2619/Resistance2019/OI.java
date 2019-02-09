@@ -56,6 +56,8 @@ public class OI {
     public JoystickButton intakeInSlowBtn;
     public JoystickButton intakeOutFastBtn;
     public JoystickButton intakeOutSlowBtn;
+    public JoystickButton shootBallBtn;
+    public JoystickButton holdBallBtn;
     public Joystick buttonBox;
     public JoystickButton extendBtn;
     public JoystickButton retractBtn;
@@ -107,6 +109,10 @@ public class OI {
         extendBtn.whileHeld(new Extend());
         buttonBox = new Joystick(2);
         
+        holdBallBtn = new JoystickButton(buttonBox, 1);
+        holdBallBtn.whileHeld(new RunShooter(-0.6));
+        shootBallBtn = new JoystickButton(buttonBox, 1);
+        shootBallBtn.whileHeld(new RunShooter(0.6));
         intakeOutSlowBtn = new JoystickButton(buttonBox, 4);
         intakeOutSlowBtn.whileHeld(new RunIntake(0));
         intakeOutFastBtn = new JoystickButton(buttonBox, 6);
