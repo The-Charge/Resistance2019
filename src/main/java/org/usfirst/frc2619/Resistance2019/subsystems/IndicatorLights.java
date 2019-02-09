@@ -75,7 +75,7 @@ public class IndicatorLights extends Subsystem {
     // here. Call these from Commands.
 
     public void lightOn(){
-        light.set(Value.kOn);
+        light.set(Value.kReverse);
     }
 
     public void lightOff(){
@@ -83,11 +83,11 @@ public class IndicatorLights extends Subsystem {
     }
 
     public void lightLFOn(){
-        light.set(Value.kOn);
+        lineFollowLight.set(Value.kForward);
     }
 
     public void lightLFOff(){
-        light.set(Value.kOff);
+        lineFollowLight.set(Value.kOff);
     }
 }
 
