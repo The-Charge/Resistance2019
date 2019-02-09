@@ -233,7 +233,7 @@ public class Elevator extends Subsystem {
 	    	motor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
 	    	motor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
 	    	
-			percentDistance = MathUtil.Clamp(percentDistance, 0, 1);
+			percentDistance = MathUtil.clamp(percentDistance, 0, 1);
 	    	MotionMagicDistance = percentDistance;
 	    	MotionMagicDistance *= TICKS_TO_TOP;
 	    	motor.set(ControlMode.MotionMagic, MotionMagicDistance);

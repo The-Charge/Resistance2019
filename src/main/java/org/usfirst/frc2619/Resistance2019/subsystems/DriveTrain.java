@@ -296,5 +296,11 @@ public class DriveTrain extends Subsystem {
 		leftFrontMotor.pidWrite(outputl);
 		rightFrontMotor.pidWrite(-outputr);
 	}
+	public void setSpeedPID(double setSpeed)
+	{
+		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
+		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
+		SmartDashboard.putNumber("Current", getCurrentAmps());
+	}
 }
 
