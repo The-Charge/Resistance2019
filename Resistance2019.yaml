@@ -13,7 +13,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id002 [CANID]
-          value: '11'
+          value: '15'
       Base: Talon SRX
       Name: LeftFrontMotor
     - Children: []
@@ -23,7 +23,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '10'
+          value: '14'
       Base: Talon SRX
       Name: LeftRearMotor
     - Children: []
@@ -33,7 +33,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '2'
+          value: '0'
       Base: Talon SRX
       Name: RightFrontMotor
     - Children: []
@@ -43,7 +43,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '3'
+          value: '1'
       Base: Talon SRX
       Name: RightRearMotor
     - Children: []
@@ -135,13 +135,13 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: [Solenoid]
-          value: '4'
+          value: '6'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Forward Channel (Solenoid)
           validators: [Solenoid]
-          value: '3'
+          value: '5'
       Base: Double Solenoid
       Name: DoubleSolenoid
     Properties:
@@ -169,7 +169,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '9'
+          value: '2'
       Base: Talon SRX
       Name: Motor
     - Children: []
@@ -214,7 +214,7 @@ Children:
           default: '0'
           name: Output Channel (Solenoid)
           validators: *id005
-          value: '6'
+          value: '3'
         Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: '0'
@@ -248,7 +248,7 @@ Children:
           default: '0'
           name: Output Channel (Solenoid)
           validators: *id005
-          value: '5'
+          value: '0'
         Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: '0'
@@ -282,7 +282,7 @@ Children:
           default: '0'
           name: Output Channel (Solenoid)
           validators: *id005
-          value: '0'
+          value: '4'
         Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: '0'
@@ -1758,10 +1758,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: IndicatorLights}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id020 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id020
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -1780,10 +1780,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: IndicatorLights}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id021 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id021
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
