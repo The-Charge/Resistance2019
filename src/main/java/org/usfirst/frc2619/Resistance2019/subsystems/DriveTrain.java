@@ -261,7 +261,7 @@ public class DriveTrain extends Subsystem {
 	 * @param setSpeed The target speed of the PID loop in percent.
 	 */
     public void setPercentSpeedPID(double setSpeed) {
-		setSpeed = MathUtil.Clamp(setSpeed, -1, 1);
+		setSpeed = MathUtil.clamp(setSpeed, -1, 1);
 		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 	}

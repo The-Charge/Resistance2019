@@ -16,7 +16,7 @@ public class MathUtil {
 		return direction;
 	}	//return +1 if direction is CW, -1 if CCW - copied from SteamBot
 
-	public static double Clamp(double input, double min, double max){
+	public static double clamp(double input, double min, double max){
 		input = input < min ? min : input;
 		input = input > max ? max : input;
 		return input;
@@ -52,4 +52,8 @@ public class MathUtil {
 		}
 		else return 0;
 	}//
+
+	public static double lerp(double input, double max, double min){
+		return (input-min)/(max-min);
+	}
 }
