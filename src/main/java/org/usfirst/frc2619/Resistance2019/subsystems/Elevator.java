@@ -57,7 +57,8 @@ public class Elevator extends Subsystem {
 	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
 	private final static double MOTION_MAGIC_F_CONSTANT = 10;
 	
-    private static final int TICKS_TO_TOP = 6000;
+	private static int TICKS_TO_TOP = 28000;
+	private static int TICKS_TO_BOTTOM = 200;
 
     final int TIMEOUT_MS = 10;
 
@@ -236,7 +237,8 @@ public class Elevator extends Subsystem {
 	    	
 			percentDistance = MathUtil.clamp(percentDistance, 0, 1);
 	    	MotionMagicDistance = percentDistance;
-	    	MotionMagicDistance *= TICKS_TO_TOP;
+			MotionMagicDistance *= (TICKS_TO_TOP-TICKS_TO_BOTTOM);
+			MotionMagicDistance += TICKS_TO_BOTTOM;
 	    	motor.set(ControlMode.MotionMagic, MotionMagicDistance);
     	}
     }
