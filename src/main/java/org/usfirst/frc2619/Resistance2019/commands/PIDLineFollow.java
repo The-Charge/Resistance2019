@@ -93,6 +93,7 @@ public class PIDLineFollow extends PIDCommand {
         if(output != 0){
             Robot.driveTrain.writeIndivPIDs(output, output);
         }
+        // TODO: Make these constants up top (something like "default PID output")
         else Robot.driveTrain.writeIndivPIDs(0.25, -0.25);
       
     }
@@ -107,6 +108,8 @@ public class PIDLineFollow extends PIDCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        // TODO: Make this an isFinished condition.
+        // Should not call end() from execute.
         if (Robot.driveTrain.getCurrentAmps() > 4) end();
     }
 
@@ -120,6 +123,7 @@ public class PIDLineFollow extends PIDCommand {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        // TODO: make sure the robot is stopped
         Robot.driveTrain.setPercentVBus();
     }
 

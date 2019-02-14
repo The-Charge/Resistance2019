@@ -44,6 +44,7 @@ public class Intake extends Subsystem {
 	private final static double SPEED_D_CONSTANT = 0.0;
 	private final static double SPEED_F_CONSTANT = 0.0;
     
+    // TODO: Make these private unless they're used outside the class
     public double speedP = SPEED_P_CONSTANT;
 	public double speedI = SPEED_I_CONSTANT;
 	public double speedD = SPEED_D_CONSTANT;
@@ -51,6 +52,8 @@ public class Intake extends Subsystem {
     
     public final static int PID_SLOT_SPEED_MODE = 1;
     
+    // TODO: Make these private unless they're used outside the class
+    // TODO: Since they're in caps, I'm assuming they're constants. Make them final
     public double CENTER_INWARD_MULTIPLIER = 1;
     public double FEED_INWARD_MULTIPLIER = 1;
     public double CENTER_OUTWARD_MULTIPLIER = 1;

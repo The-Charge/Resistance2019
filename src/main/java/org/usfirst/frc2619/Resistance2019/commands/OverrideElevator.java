@@ -58,6 +58,8 @@ public class OverrideElevator extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        // TODO Verify it should be an AND here (timeout can't happen unless it ALSO hit a limit switch)
+        // (that means it can just sit and run slowly without ever timing out so long as it doesn't hit a switch)
         return (Robot.elevator.checkLimitSwitches() && isTimedOut()) || !Robot.elevator.movable;
     }
 

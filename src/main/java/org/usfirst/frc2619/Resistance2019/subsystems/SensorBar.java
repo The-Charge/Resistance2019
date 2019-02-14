@@ -45,6 +45,7 @@ public class SensorBar extends Subsystem {
     private final int NUM_SENSORS = 5;
 
     
+    // TODO: Make this private unless it's used outside the class (it shouldn't be)
     public DigitalInput[] sensBar = new DigitalInput[5];
 
     public SensorBar() {
@@ -108,6 +109,7 @@ public class SensorBar extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    // TODO: Is this being used? If not, get rid of it.
     public DigitalInput getSensor(int sensor){
         return sensBar[sensor];
     }

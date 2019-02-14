@@ -40,6 +40,7 @@ public class DriveToLine extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        // TODO: 5 seconds seems like a long time...
         this.setTimeout(5);
 		Robot.driveTrain.initSpeedMode();
     }
@@ -53,6 +54,7 @@ public class DriveToLine extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        // TODO: Probably should be an or here (we time our OR we saw a line)
         return isTimedOut() && Robot.sensorBar.isOneSensed();
     }
 

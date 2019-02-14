@@ -38,6 +38,7 @@ public class ToggleLockStraight extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        // TODO: Consider changing this to an instant command if it doesn't do anything in execute()/end()
         if(Robot.driveTrain.driveLocked==false)
         {
             Robot.driveTrain.driveLocked = true;
