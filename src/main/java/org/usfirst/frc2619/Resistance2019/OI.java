@@ -56,14 +56,14 @@ public class OI {
     public JoystickButton intakeInSlowBtn;
     public JoystickButton intakeOutFastBtn;
     public JoystickButton intakeOutSlowBtn;
+    public JoystickButton shootBallBtn;
+    public JoystickButton holdBallBtn;
     public Joystick buttonBox;
     public JoystickButton extendBtn;
     public JoystickButton retractBtn;
     public JoystickButton putHatchBtn;
-    public JoystickButton holdBtn;
     public JoystickButton shiftLowBtn;
     public JoystickButton shiftHighBtn;
-    public JoystickButton moveKickerBtn;
     public JoystickButton tankDriveBtn;
     public Joystick leftJoystick;
     public JoystickButton elevateToBottomBtn;
@@ -97,14 +97,10 @@ public class OI {
         
         tankDriveBtn = new JoystickButton(leftJoystick, 12);
         tankDriveBtn.whenPressed(new TankDrive());
-        moveKickerBtn = new JoystickButton(leftJoystick, 2);
-        moveKickerBtn.whileHeld(new ExtendKicker());
         shiftHighBtn = new JoystickButton(leftJoystick, 6);
         shiftHighBtn.whileHeld(new ShiftHigh());
         shiftLowBtn = new JoystickButton(leftJoystick, 5);
         shiftLowBtn.whileHeld(new ShiftLow());
-        holdBtn = new JoystickButton(leftJoystick, 7);
-        holdBtn.whileHeld(new HoldBall());
         putHatchBtn = new JoystickButton(leftJoystick, 8);
         putHatchBtn.whileHeld(new PutHatch());
         retractBtn = new JoystickButton(leftJoystick, 4);
@@ -113,6 +109,10 @@ public class OI {
         extendBtn.whileHeld(new Extend());
         buttonBox = new Joystick(2);
         
+        holdBallBtn = new JoystickButton(buttonBox, 1);
+        holdBallBtn.whileHeld(new RunShooter(-0.6));
+        shootBallBtn = new JoystickButton(buttonBox, 1);
+        shootBallBtn.whileHeld(new RunShooter(0.6));
         intakeOutSlowBtn = new JoystickButton(buttonBox, 4);
         intakeOutSlowBtn.whileHeld(new RunIntake(0));
         intakeOutFastBtn = new JoystickButton(buttonBox, 6);
@@ -134,11 +134,9 @@ public class OI {
         SmartDashboard.putData("ElevateToXPositionMotionMagic: middle", new ElevateToXPositionMotionMagic(0.4));
         SmartDashboard.putData("StopElevator", new StopElevator());
         SmartDashboard.putData("PutHatch", new PutHatch());
-        SmartDashboard.putData("HoldBall", new HoldBall());
         SmartDashboard.putData("InvertDrive", new InvertDrive());
         SmartDashboard.putData("ShiftLow", new ShiftLow());
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
-        SmartDashboard.putData("ExtendKicker", new ExtendKicker());
         SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
         SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight());
         SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
