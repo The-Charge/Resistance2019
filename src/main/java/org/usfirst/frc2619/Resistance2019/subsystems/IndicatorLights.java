@@ -82,15 +82,12 @@ public class IndicatorLights extends Subsystem {
         light.set(Value.kOff);
     }
 
-    // TODO: What's the difference between lightLFOn and lightOn?
-    // May want to give this a better name (no need for acronym LF)
-    // May want to give the other ones a better name as well if they're used for something different.
-    public void lightLFOn(){
-        light.set(Value.kOn);
+    public void lightLineFollowOn(){
+        lineFollowLight.set(Value.kOn);
     }
 
-    public void lightLFOff(){
-        light.set(Value.kOff);
+    public void lightLineFollowOff(){
+        lineFollowLight.set(Value.kOff);
     }
 }
 

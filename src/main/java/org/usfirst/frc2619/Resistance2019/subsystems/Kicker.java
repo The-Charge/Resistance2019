@@ -72,9 +72,8 @@ public class Kicker extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    // TODO: Consider changing method name
-    // "status" implies getting the current status (ie: are we kicked out?)
-    public void setKicker(boolean isExtended) {
+    // NOTE: this subsystem is getting deleted soon
+    public void setKickerStatus(boolean isExtended) {
     	solenoid.set(isExtended);
     }
 }

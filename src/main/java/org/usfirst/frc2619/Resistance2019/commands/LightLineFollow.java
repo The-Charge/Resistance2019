@@ -44,8 +44,8 @@ public class LightLineFollow extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.sensorBar.isOneSensed()) Robot.indicatorLights.lightLFOn();
-        else Robot.indicatorLights.lightLFOff();
+        if (Robot.sensorBar.isOneSensed()) Robot.indicatorLights.lightLineFollowOn();
+        else Robot.indicatorLights.lightLineFollowOff();
     }
 
     // Make this return true when this Command no longer needs to run execute()
