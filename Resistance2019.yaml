@@ -93,7 +93,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '7'
+          value: '8'
       Base: Talon SRX
       Name: FeedRoller
     Properties:
@@ -390,7 +390,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '8'
+          value: '7'
       Base: Talon SRX
       Name: ShooterMotor
     Properties:
@@ -1188,5 +1188,7 @@ Properties:
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\shiva\'}
   Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\kaedo\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\workspace'}
+  Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+    name: Autonomous Command, type: Command, validators: null, value: None}
 Base: Robot
 Name: Resistance2019

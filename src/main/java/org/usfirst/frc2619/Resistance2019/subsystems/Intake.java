@@ -65,7 +65,7 @@ public class Intake extends Subsystem {
         
         
         
-        feedRoller = new WPI_TalonSRX(7);
+        feedRoller = new WPI_TalonSRX(8);
         
         
         

@@ -294,7 +294,7 @@ public class DriveTrain extends Subsystem {
 	{
 		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
-		SmartDashboard.putNumber("Current", getCurrentAmps());
+		//SmartDashboard.putNumber("Current", getCurrentAmps());
 	}
 }
 
