@@ -82,12 +82,12 @@ public class IndicatorLights extends Subsystem {
         light.set(Value.kOff);
     }
 
-    public void lightLFOn(){
-        light.set(Value.kOn);
+    public void lightLineFollowOn(){
+        lineFollowLight.set(Value.kOn);
     }
 
-    public void lightLFOff(){
-        light.set(Value.kOff);
+    public void lightLineFollowOff(){
+        lineFollowLight.set(Value.kOff);
     }
 }
 

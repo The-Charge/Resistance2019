@@ -56,7 +56,7 @@ public class DriveToCurrent extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-    	return isTimedOut() && Robot.driveTrain.getCurrentAmps() > m_maxCurrent;
+    	return isTimedOut() || Robot.driveTrain.getCurrentAmps() > m_maxCurrent;
     }
 
     // Called once after isFinished returns true
