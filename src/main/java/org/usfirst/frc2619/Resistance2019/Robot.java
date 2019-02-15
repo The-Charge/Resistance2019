@@ -155,7 +155,6 @@ public class Robot extends TimedRobot {
      * Add useful Dashboard values that are always nessesary
      */
     public void dashboardValues() {
-    	SmartDashboard.putBoolean("Inverted",driveTrain.isReversed);
         SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         SmartDashboard.putBoolean("Line Detected", sensorBar.isOneSensed());
         // Put dashboard values for debugging here
