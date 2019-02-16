@@ -206,7 +206,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("ShiftLow", new ShiftLow());
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
         SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
-        SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight());
+        SmartDashboard.putData("LockStraight", new LockStraight());
         SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
         SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
         SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
