@@ -79,8 +79,8 @@ public class Elevator extends Subsystem {
 	public final static int PID_SLOT_SPEED_MODE = 1;
 	public final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 0;
 
-	public final static int SAFETY_LIMIT = 200;
-	public final static int LANCE_HEIGHT = 100;
+	private final static int SAFETY_LIMIT_TICKS = 200;
+	private final static int LANCE_HEIGHT_TICKS = 100;
     public boolean isUp = false;
 
     public Elevator() {
@@ -141,7 +141,13 @@ public class Elevator extends Subsystem {
 	
 	public void set(double percentSpeed) {
 		if (safeToElevateVelocity(percentSpeed))
+		{
 			motor.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * percentSpeed);
+			SmartDashboard.putBoolean("Elevator Error", false);
+		}
+		else{
+			SmartDashboard.putBoolean("Elevator Error", true);
+		}
 	}
 
 	public void stop() {
@@ -241,7 +247,13 @@ public class Elevator extends Subsystem {
 	    	MotionMagicDistance = percentDistance;
 			MotionMagicDistance *= TICKS_TO_TOP;
 			
-			if (safeToElevatePosition(MotionMagicDistance)) motor.set(ControlMode.MotionMagic, MotionMagicDistance);
+			if (safeToElevatePosition(MotionMagicDistance)){
+				 motor.set(ControlMode.MotionMagic, MotionMagicDistance);
+				 SmartDashboard.putBoolean("Elevator Error", false);
+			}
+			else{
+				SmartDashboard.putBoolean("Elevator Error", true);
+			}
     	//}
     }
     
@@ -258,12 +270,12 @@ public class Elevator extends Subsystem {
 		}
 		else
 		{
-			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT)
+			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT_TICKS) 
 			{
 				if(percentSpeed <= 0) return true;
 				else return false;
 			}
-			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT) 
+			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT_TICKS) 
 			{
 				if(percentSpeed >= 0) return true;
 				else 
@@ -283,14 +295,14 @@ public class Elevator extends Subsystem {
 		}
 		else
 		{
-			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT)
+			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT_TICKS)
 			{
-				if(motionmagicticks <= LANCE_HEIGHT) return true;
+				if(motionmagicticks <= LANCE_HEIGHT_TICKS) return true;
 				else return false;
 			}
-			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT) 
+			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT_TICKS) 
 			{
-				if (motionmagicticks <= SAFETY_LIMIT) return true;
+				if (motionmagicticks <= SAFETY_LIMIT_TICKS) return true;
 				else 
 				{
 					brakeOn();
@@ -300,6 +312,10 @@ public class Elevator extends Subsystem {
 			else return true;		
 			
 		}
+	}
+	public double getTicks()
+	{
+		return motor.getSelectedSensorPosition();
 	}
 
 	

@@ -43,7 +43,8 @@ public class OverrideElevator extends Command {
         if (m_speed > 0)
     		Robot.elevator.isUp = true;
     	else
-    		Robot.elevator.isUp = false;
+            Robot.elevator.isUp = false;
+        
     	Robot.elevator.initSpeedPercentageMode();
     	this.setTimeout(2);
 	    Robot.elevator.brakeOff();
@@ -58,7 +59,7 @@ public class OverrideElevator extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return (Robot.elevator.checkLimitSwitches() && isTimedOut()) || !Robot.elevator.movable;
+        return (Robot.elevator.checkLimitSwitches() && isTimedOut()) ;
     }
 
     // Called once after isFinished returns true
@@ -74,4 +75,7 @@ public class OverrideElevator extends Command {
     protected void interrupted() {
         end();
     }
+
+
+        
 }
