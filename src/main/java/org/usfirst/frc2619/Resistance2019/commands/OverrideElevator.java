@@ -43,7 +43,8 @@ public class OverrideElevator extends Command {
         if (m_speed > 0)
     		Robot.elevator.isUp = true;
     	else
-    		Robot.elevator.isUp = false;
+            Robot.elevator.isUp = false;
+        
     	Robot.elevator.initSpeedPercentageMode();
     	this.setTimeout(2);
 	    Robot.elevator.brakeOff();
@@ -74,4 +75,7 @@ public class OverrideElevator extends Command {
     protected void interrupted() {
         end();
     }
+
+
+        
 }

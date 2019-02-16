@@ -26,7 +26,9 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+	import org.usfirst.frc2619.Resistance2019.subsystems.Extension;
+	import  org.usfirst.frc2619.Resistance2019.Robot;
+	import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 /**
  * @param MotionMagicDistance The current target distance for Motion Magic in ticks.
@@ -83,6 +85,8 @@ public class Elevator extends Subsystem {
 
 	// NOTE: movable is becoming movableUp and movableDown
     public boolean movable = true;
+	private final static int SAFETY_LIMIT_TICKS = 200;
+	private final static int LANCE_HEIGHT_TICKS = 100;
     public boolean isUp = false;
 
     public Elevator() {
@@ -142,8 +146,14 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void set(double percentSpeed) {
-		if (movable)
+		if (safeToElevateVelocity(percentSpeed))
+		{
 			motor.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * percentSpeed);
+			SmartDashboard.putBoolean("Elevator Error", false);
+		}
+		else{
+			SmartDashboard.putBoolean("Elevator Error", true);
+		}
 	}
 
 	public void stop() {
@@ -225,7 +235,7 @@ public class Elevator extends Subsystem {
     }
     
     public void MotionMagicInit(double percentDistance) {
-    	if (movable) {
+    	//if (movable){
 	    	motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
 			
 	    	motor.selectProfileSlot(MOTION_MAGIC_SLOT_DISTANCE_MODE,0);
@@ -241,14 +251,78 @@ public class Elevator extends Subsystem {
 	    	
 			percentDistance = MathUtil.clamp(percentDistance, 0, 1);
 	    	MotionMagicDistance = percentDistance;
-			MotionMagicDistance *= (TICKS_TO_TOP-TICKS_TO_BOTTOM);
-			MotionMagicDistance += TICKS_TO_BOTTOM;
-	    	motor.set(ControlMode.MotionMagic, MotionMagicDistance);
-    	}
+			MotionMagicDistance *= TICKS_TO_TOP;
+			
+			if (safeToElevatePosition(MotionMagicDistance)){
+				 motor.set(ControlMode.MotionMagic, MotionMagicDistance);
+				 SmartDashboard.putBoolean("Elevator Error", false);
+			}
+			else{
+				SmartDashboard.putBoolean("Elevator Error", true);
+			}
+    	//}
     }
     
     public boolean isAtPIDDestination() {
 		return (Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < MAX_MOTION_MAGIC_DISTANCE);// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
 	}
-}
 
+	public boolean safeToElevateVelocity(double percentSpeed)
+	{
+		//boolean safe;
+		if (Robot.extension.getStatus()) 
+		{
+			return true;
+		}
+		else
+		{
+			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT_TICKS) 
+			{
+				if(percentSpeed <= 0) return true;
+				else return false;
+			}
+			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT_TICKS) 
+			{
+				if(percentSpeed >= 0) return true;
+				else 
+				{
+					brakeOn();
+					return false;					
+				}
+			}
+			return true;			
+		}
+	}
+	public boolean safeToElevatePosition(double motionmagicticks)
+	{
+		if (Robot.extension.getStatus()) 
+		{
+			return true;
+		}
+		else
+		{
+			if (motor.getSelectedSensorPosition() <= LANCE_HEIGHT_TICKS)
+			{
+				if(motionmagicticks <= LANCE_HEIGHT_TICKS) return true;
+				else return false;
+			}
+			else if (motor.getSelectedSensorPosition() <= SAFETY_LIMIT_TICKS) 
+			{
+				if (motionmagicticks <= SAFETY_LIMIT_TICKS) return true;
+				else 
+				{
+					brakeOn();
+					return false;					
+				}
+			}
+			else return true;		
+			
+		}
+	}
+	public double getTicks()
+	{
+		return motor.getSelectedSensorPosition();
+	}
+
+	
+}
