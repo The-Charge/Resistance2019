@@ -91,7 +91,7 @@ public class Elevator extends Subsystem {
         
         
         
-        brakes = new Solenoid(0, 1);
+        brakes = new Solenoid(0, 5);
         addChild("Brakes",brakes);
         
         

@@ -55,6 +55,11 @@ public class OI {
     public JoystickButton overrideUpElevatorBtn;
     public JoystickButton overrideDownElevatorBtn;
     public JoystickButton shootBallBtn;
+    public JoystickButton extendLanceBtn;
+    public JoystickButton elevateLowRocketBtn;
+    public JoystickButton elevateMidRocketBtn;
+    public JoystickButton elevateCargoShipBtn;
+    public JoystickButton reverseIntakeBtn;
     public Joystick buttonBox;
     public JoystickButton lockStraightBtn;
     public JoystickButton lineFollowBtn;
@@ -100,6 +105,16 @@ public class OI {
         lockStraightBtn.whileHeld(new LockStraight());
         buttonBox = new Joystick(2);
         
+        reverseIntakeBtn = new JoystickButton(buttonBox, 12);
+        reverseIntakeBtn.whileHeld(new RunIntake(-0.5));
+        elevateCargoShipBtn = new JoystickButton(buttonBox, 8);
+        elevateCargoShipBtn.whenPressed(new ElevateToXPositionMotionMagic(0.55));
+        elevateMidRocketBtn = new JoystickButton(buttonBox, 9);
+        elevateMidRocketBtn.whenPressed(new ElevateToXPositionMotionMagic(0.84));
+        elevateLowRocketBtn = new JoystickButton(buttonBox, 7);
+        elevateLowRocketBtn.whenPressed(new ElevateToXPositionMotionMagic(0.32));
+        extendLanceBtn = new JoystickButton(buttonBox, 4);
+        extendLanceBtn.whenPressed(new ToggleLanceExtension());
         shootBallBtn = new JoystickButton(buttonBox, 1);
         shootBallBtn.whileHeld(new RunShooter(0.65));
         overrideDownElevatorBtn = new JoystickButton(buttonBox, 3);
