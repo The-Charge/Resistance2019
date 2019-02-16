@@ -37,7 +37,7 @@ public class LockStraight extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.driveTrain.driveLocked =  true;
+        Robot.driveTrain.setLocked(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,7 +54,7 @@ public class LockStraight extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.driveTrain.driveLocked = false;
+        Robot.driveTrain.setLocked(false);;
     }
 
     // Called when another command which requires one or more of the same
