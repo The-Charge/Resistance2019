@@ -165,7 +165,9 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("FR Sensor Detected", sensorBar.isSensorTriggered(4));
         SmartDashboard.putNumber("Elevator Encoder", elevator.getEncoder());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
-        SmartDashboard.putNumber("Ticks Per Second", shooter.getTicksPerSecond());
+        SmartDashboard.putNumber("Shooter Ticks Per Second", shooter.getTicksPerSecond());
+        SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
+        SmartDashboard.putNumber("Drive Velocity", driveTrain.getEncoderVelocity());
         // Put dashboard values for debugging here
 	}
 

@@ -321,5 +321,13 @@ public class DriveTrain extends Subsystem {
     	rightFrontMotor.setNeutralMode(NeutralMode.Brake);
     	rightRearMotor.setNeutralMode(NeutralMode.Brake);
 	}
+
+	public int getEncoderTicks(){
+		return leftFrontMotor.getSelectedSensorPosition();
+	}
+
+	public int getEncoderVelocity(){
+		return leftFrontMotor.getSelectedSensorVelocity();
+	}
 }
 
