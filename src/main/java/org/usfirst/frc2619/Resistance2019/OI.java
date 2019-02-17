@@ -60,6 +60,8 @@ public class OI {
     public JoystickButton elevateMidRocketBtn;
     public JoystickButton elevateCargoShipBtn;
     public JoystickButton reverseIntakeBtn;
+    public JoystickButton climbBtn;
+    public JoystickButton reverseClimbBtn;
     public Joystick buttonBox;
     public JoystickButton lockStraightBtn;
     public JoystickButton lineFollowBtn;
@@ -105,6 +107,10 @@ public class OI {
         lockStraightBtn.whileHeld(new LockStraight());
         buttonBox = new Joystick(2);
         
+        reverseClimbBtn = new JoystickButton(buttonBox, 10);
+        reverseClimbBtn.whileHeld(new Climb(-0.5));
+        climbBtn = new JoystickButton(buttonBox, 8);
+        climbBtn.whileHeld(new Climb(0.5));
         reverseIntakeBtn = new JoystickButton(buttonBox, 12);
         reverseIntakeBtn.whileHeld(new ReverseLance());
         elevateCargoShipBtn = new JoystickButton(buttonBox, 9);
