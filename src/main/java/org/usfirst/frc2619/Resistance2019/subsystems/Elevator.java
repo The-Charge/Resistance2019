@@ -305,6 +305,17 @@ public class Elevator extends Subsystem {
 			return ((motor.getSelectedSensorPosition()>=SAFETY_LIMIT_TICKS)||(motor.getSelectedSensorPosition()<=LANCE_HEIGHT_TICKS));
 		}
 	}
+	public boolean safeToElevatePosition(double position)
+	{
+		if (Robot.extension.getStatus()) 
+		{
+			return true;
+		}
+		else
+		{
+			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS));
+		}
+	}
 	public double getTicks()
 	{
 		return motor.getSelectedSensorPosition();
