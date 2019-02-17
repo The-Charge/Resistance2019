@@ -56,8 +56,9 @@ public class RunIntake extends Command {
 
     // Called once after isFinished returns true
     @Override
-    protected void end() {
+    protected void end() {      
         Robot.intake.stop();
+        Robot.intake.setPercentVBus();
     }
 
     // Called when another command which requires one or more of the same
