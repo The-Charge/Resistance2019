@@ -162,6 +162,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         SmartDashboard.putBoolean("Line Detected", sensorBar.isOneSensed());
         SmartDashboard.putBoolean("Ball Detected", ballSensor.isBallSensed());
+        SmartDashboard.putNumber("Elevator Encoder", elevator.getEncoder());
+        SmartDashboard.putNumber("Elevator Motor Power", elevator.getMotorOutput());
+        SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
+        SmartDashboard.putNumber("Ticks Per Second", shooter.getTicksPerSecond());
         // Put dashboard values for debugging here
 	}
 
@@ -191,6 +195,44 @@ public class Robot extends TimedRobot {
             elevatorHigh = tempDouble;
             rewriteInitialValues = true;
         }
+
+        tempDouble = Robot.elevator.MOTION_MAGIC_P_CONSTANT;
+        tempDouble = SmartDashboard.getNumber("Elevator P", tempDouble);
+        if (tempDouble != Robot.elevator.MOTION_MAGIC_P_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_P_CONSTANT = tempDouble;
+            rewriteInitialValues = true;
+        }
+        tempDouble = Robot.elevator.MOTION_MAGIC_I_CONSTANT;
+        tempDouble = SmartDashboard.getNumber("Elevator I", tempDouble);
+        if (tempDouble != Robot.elevator.MOTION_MAGIC_I_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_I_CONSTANT = tempDouble;
+            rewriteInitialValues = true;
+        }
+        tempDouble = Robot.elevator.MOTION_MAGIC_D_CONSTANT;
+        tempDouble = SmartDashboard.getNumber("Elevator D", tempDouble);
+        if (tempDouble != Robot.elevator.MOTION_MAGIC_D_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_D_CONSTANT = tempDouble;
+            rewriteInitialValues = true;
+        }
+        tempDouble = Robot.elevator.MOTION_MAGIC_F_CONSTANT;
+        tempDouble = SmartDashboard.getNumber("Elevator F", tempDouble);
+        if (tempDouble != Robot.elevator.MOTION_MAGIC_F_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_F_CONSTANT = tempDouble;
+            rewriteInitialValues = true;
+        }
+        int tempInt = Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT;
+        tempInt = (int)SmartDashboard.getNumber("Elevator V", tempInt);
+        if (tempInt != Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT = tempInt;
+            rewriteInitialValues = true;
+        }
+        tempInt = Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT;
+        tempInt = (int)SmartDashboard.getNumber("Elevator A", tempInt);
+        if (tempInt != Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT){
+            Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT = tempInt;
+            rewriteInitialValues = true;
+        }
+
     }
     
     public void writeInitialDashboardValues(){
@@ -198,6 +240,12 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("BallCollect Height", elevatorBottom);
         SmartDashboard.putNumber("Low Height", elevatorLow);
         SmartDashboard.putNumber("High Height", elevatorHigh);
+        SmartDashboard.putNumber("Elevator P", Robot.elevator.MOTION_MAGIC_P_CONSTANT);
+        SmartDashboard.putNumber("Elevator I", Robot.elevator.MOTION_MAGIC_I_CONSTANT);
+        SmartDashboard.putNumber("Elevator D", Robot.elevator.MOTION_MAGIC_D_CONSTANT);
+        SmartDashboard.putNumber("Elevator F", Robot.elevator.MOTION_MAGIC_F_CONSTANT);
+        SmartDashboard.putNumber("Elevator V", Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT);
+        SmartDashboard.putNumber("Elevator A", Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT);
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
         SmartDashboard.putData("Extend", new Extend());
@@ -206,6 +254,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("ElevateToXPositionMotionMagic: low", new ElevateToXPositionMotionMagic(elevatorLow));
         SmartDashboard.putData("ElevateToXPositionMotionMagic: high", new ElevateToXPositionMotionMagic(elevatorHigh));
         SmartDashboard.putData("StopElevator", new StopElevator());
+        SmartDashboard.putData("OverrideElevator Up", new OverrideElevator(0.2));
+        SmartDashboard.putData("OverrideElevator Down", new OverrideElevator(-0.2));
         SmartDashboard.putData("PutHatch", new PutHatch());
         SmartDashboard.putData("InvertDrive", new InvertDrive());
         SmartDashboard.putData("ShiftLow", new ShiftLow());
@@ -220,6 +270,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("LightLineFollow", new LightLineFollow());
         SmartDashboard.putData("LightOn", new LightOn());
         SmartDashboard.putData("Run Shooter", new RunShooter(0.1));
+        SmartDashboard.putData("BrakeOn", new BrakeOn());
+        SmartDashboard.putData("BrakeOff", new BrakeOff());
+        SmartDashboard.putData("TankDrive", new TankDrive());
+        SmartDashboard.putData("ShooterFull", new ShooterFull());
         }
     }
 }

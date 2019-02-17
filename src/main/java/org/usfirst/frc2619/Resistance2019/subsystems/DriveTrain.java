@@ -95,7 +95,7 @@ public class DriveTrain extends Subsystem {
         
         
         
-        leftRearMotor = new WPI_TalonSRX(14);
+        leftRearMotor = new WPI_TalonSRX(13);
         
         
         

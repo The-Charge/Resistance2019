@@ -53,7 +53,7 @@ public class ElevateToXPositionMotionMagic extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.elevator.isAtPIDDestination()  || isTimedOut();
+        return Robot.elevator.isAtPIDDestination()  || isTimedOut() || Robot.elevator.checkLimitSwitches();
     }
 
     // Called once after isFinished returns true
