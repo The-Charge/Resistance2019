@@ -52,12 +52,12 @@ public class Elevator extends Subsystem {
 	
     private static final int MAX_TICKS_PER_SEC = 934;
 	
-	public static int MOTION_MAGIC_VELOCITY_CONSTANT = 750;
-	public static int MOTION_MAGIC_ACCELERATION_CONSTANT = 650;
-	public static double MOTION_MAGIC_P_CONSTANT = 1;
-	public static double MOTION_MAGIC_I_CONSTANT = 0.001;
-	public static double MOTION_MAGIC_D_CONSTANT = 0.0;
-	public static double MOTION_MAGIC_F_CONSTANT = 10;
+	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 750;
+	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 650;
+	private final static double MOTION_MAGIC_P_CONSTANT = 1;
+	private final static double MOTION_MAGIC_I_CONSTANT = 0.001;
+	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
+	private final static double MOTION_MAGIC_F_CONSTANT = 10;
 	
 	private static int TICKS_TO_TOP = 28000;
 	private static int TICKS_TO_BOTTOM = 200;
@@ -246,14 +246,14 @@ public class Elevator extends Subsystem {
 			
 	    	motor.selectProfileSlot(MOTION_MAGIC_SLOT_DISTANCE_MODE,0);
 	    	
-	    	motor.config_kP(MOTION_MAGIC_SLOT_DISTANCE_MODE, MOTION_MAGIC_P_CONSTANT, TIMEOUT_MS);
-	    	motor.config_kI(MOTION_MAGIC_SLOT_DISTANCE_MODE, MOTION_MAGIC_I_CONSTANT, TIMEOUT_MS);
-	    	motor.config_kD(MOTION_MAGIC_SLOT_DISTANCE_MODE, MOTION_MAGIC_D_CONSTANT, TIMEOUT_MS);
-	    	motor.config_kF(MOTION_MAGIC_SLOT_DISTANCE_MODE, MOTION_MAGIC_F_CONSTANT, TIMEOUT_MS);
+	    	motor.config_kP(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicP, TIMEOUT_MS);
+	    	motor.config_kI(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicI, TIMEOUT_MS);
+	    	motor.config_kD(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicD, TIMEOUT_MS);
+	    	motor.config_kF(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicF, TIMEOUT_MS);
 	    	
 	    	
-	    	motor.configMotionAcceleration(MOTION_MAGIC_ACCELERATION_CONSTANT, TIMEOUT_MS);
-	    	motor.configMotionCruiseVelocity(MOTION_MAGIC_VELOCITY_CONSTANT, TIMEOUT_MS);
+	    	motor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
+	    	motor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
 	    	
 			percentDistance = MathUtil.clamp(percentDistance, 0, 1);
 	    	MotionMagicDistance = percentDistance;

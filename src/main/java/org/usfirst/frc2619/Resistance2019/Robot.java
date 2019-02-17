@@ -50,9 +50,6 @@ public class Robot extends TimedRobot {
 
     public static boolean DEBUG = true;
     // BEGIN Debug values
-    public static double elevatorBottom = 0.1;
-    public static double elevatorLow = 0.2;
-    public static double elevatorHigh = 0.4;
     public static boolean rewriteInitialValues = false;
     // END Debug values
 
@@ -160,10 +157,13 @@ public class Robot extends TimedRobot {
      */
     public void dashboardValues() {
         SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
-        SmartDashboard.putBoolean("Line Detected", sensorBar.isOneSensed());
         SmartDashboard.putBoolean("Ball Detected", ballSensor.isBallSensed());
+        SmartDashboard.putBoolean("FL Sensor Detected", sensorBar.isSensorTriggered(0));
+        SmartDashboard.putBoolean("L Sensor Detected", sensorBar.isSensorTriggered(1));
+        SmartDashboard.putBoolean("M Sensor Detected", sensorBar.isSensorTriggered(2));
+        SmartDashboard.putBoolean("R Sensor Detected", sensorBar.isSensorTriggered(3));
+        SmartDashboard.putBoolean("FR Sensor Detected", sensorBar.isSensorTriggered(4));
         SmartDashboard.putNumber("Elevator Encoder", elevator.getEncoder());
-        SmartDashboard.putNumber("Elevator Motor Power", elevator.getMotorOutput());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
         SmartDashboard.putNumber("Ticks Per Second", shooter.getTicksPerSecond());
         // Put dashboard values for debugging here
@@ -175,84 +175,67 @@ public class Robot extends TimedRobot {
      * This code could be improved with a dictionary
      */
     public void dashboardDebugValues() {
-        double tempDouble = elevatorBottom;
-        tempDouble = SmartDashboard.getNumber("BallCollect Height", tempDouble);
-        if (tempDouble != elevatorBottom){
-            elevatorBottom = tempDouble;
+        double tempDouble = driveTrain.MotionMagicP;
+        tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
+        if (tempDouble != driveTrain.MotionMagicP){
+            driveTrain.MotionMagicP = tempDouble;
             rewriteInitialValues = true;
         }
 
-        tempDouble = elevatorLow;
-        tempDouble = SmartDashboard.getNumber("Low Height", tempDouble);
-        if (tempDouble != elevatorLow){
-            elevatorLow = tempDouble;
+        tempDouble = driveTrain.MotionMagicI;
+        tempDouble = SmartDashboard.getNumber("Drive I", tempDouble);
+        if (tempDouble != driveTrain.MotionMagicI){
+            driveTrain.MotionMagicI = tempDouble;
             rewriteInitialValues = true;
         }
 
-        tempDouble = elevatorHigh;
-        tempDouble = SmartDashboard.getNumber("High Height", tempDouble);
-        if (tempDouble != elevatorHigh){
-            elevatorHigh = tempDouble;
+        tempDouble = driveTrain.MotionMagicD;
+        tempDouble = SmartDashboard.getNumber("Drive D", tempDouble);
+        if (tempDouble != driveTrain.MotionMagicD){
+            driveTrain.MotionMagicD = tempDouble;
             rewriteInitialValues = true;
         }
 
-        tempDouble = Robot.elevator.MOTION_MAGIC_P_CONSTANT;
-        tempDouble = SmartDashboard.getNumber("Elevator P", tempDouble);
-        if (tempDouble != Robot.elevator.MOTION_MAGIC_P_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_P_CONSTANT = tempDouble;
+        tempDouble = driveTrain.MotionMagicF;
+        tempDouble = SmartDashboard.getNumber("Drive F", tempDouble);
+        if (tempDouble != driveTrain.MotionMagicF){
+            driveTrain.MotionMagicF = tempDouble;
             rewriteInitialValues = true;
         }
-        tempDouble = Robot.elevator.MOTION_MAGIC_I_CONSTANT;
-        tempDouble = SmartDashboard.getNumber("Elevator I", tempDouble);
-        if (tempDouble != Robot.elevator.MOTION_MAGIC_I_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_I_CONSTANT = tempDouble;
+
+        int tempInt = driveTrain.MotionMagicVelocity;
+        tempInt = (int)SmartDashboard.getNumber("Drive V", tempInt);
+        if (tempInt != driveTrain.MotionMagicVelocity){
+            driveTrain.MotionMagicVelocity = tempInt;
             rewriteInitialValues = true;
         }
-        tempDouble = Robot.elevator.MOTION_MAGIC_D_CONSTANT;
-        tempDouble = SmartDashboard.getNumber("Elevator D", tempDouble);
-        if (tempDouble != Robot.elevator.MOTION_MAGIC_D_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_D_CONSTANT = tempDouble;
+
+        tempInt = driveTrain.MotionMagicAcceleration;
+        tempInt = (int)SmartDashboard.getNumber("Drive A", tempInt);
+        if (tempInt != driveTrain.MotionMagicAcceleration){
+            driveTrain.MotionMagicAcceleration = tempInt;
             rewriteInitialValues = true;
         }
-        tempDouble = Robot.elevator.MOTION_MAGIC_F_CONSTANT;
-        tempDouble = SmartDashboard.getNumber("Elevator F", tempDouble);
-        if (tempDouble != Robot.elevator.MOTION_MAGIC_F_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_F_CONSTANT = tempDouble;
-            rewriteInitialValues = true;
-        }
-        int tempInt = Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT;
-        tempInt = (int)SmartDashboard.getNumber("Elevator V", tempInt);
-        if (tempInt != Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT = tempInt;
-            rewriteInitialValues = true;
-        }
-        tempInt = Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT;
-        tempInt = (int)SmartDashboard.getNumber("Elevator A", tempInt);
-        if (tempInt != Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT){
-            Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT = tempInt;
-            rewriteInitialValues = true;
-        }
+        
 
     }
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
-        SmartDashboard.putNumber("BallCollect Height", elevatorBottom);
-        SmartDashboard.putNumber("Low Height", elevatorLow);
-        SmartDashboard.putNumber("High Height", elevatorHigh);
-        SmartDashboard.putNumber("Elevator P", Robot.elevator.MOTION_MAGIC_P_CONSTANT);
-        SmartDashboard.putNumber("Elevator I", Robot.elevator.MOTION_MAGIC_I_CONSTANT);
-        SmartDashboard.putNumber("Elevator D", Robot.elevator.MOTION_MAGIC_D_CONSTANT);
-        SmartDashboard.putNumber("Elevator F", Robot.elevator.MOTION_MAGIC_F_CONSTANT);
-        SmartDashboard.putNumber("Elevator V", Robot.elevator.MOTION_MAGIC_VELOCITY_CONSTANT);
-        SmartDashboard.putNumber("Elevator A", Robot.elevator.MOTION_MAGIC_ACCELERATION_CONSTANT);
+        SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
+        SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
+        SmartDashboard.putNumber("Drive P", driveTrain.MotionMagicP);
+        SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
+        SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
+        SmartDashboard.putNumber("Drive F", driveTrain.MotionMagicF);
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
         SmartDashboard.putData("Extend", new Extend());
         SmartDashboard.putData("Retract", new Retract());
-        SmartDashboard.putData("ElevateToXPositionMotionMagic: ballCollect", new ElevateToXPositionMotionMagic(elevatorBottom));
-        SmartDashboard.putData("ElevateToXPositionMotionMagic: low", new ElevateToXPositionMotionMagic(elevatorLow));
-        SmartDashboard.putData("ElevateToXPositionMotionMagic: high", new ElevateToXPositionMotionMagic(elevatorHigh));
+        SmartDashboard.putData("ElevateToXPositionMotionMagic: BallCollect", new ElevateToXPositionMotionMagic(0));
+        SmartDashboard.putData("ElevateToXPositionMotionMagic: Low-Rocket", new ElevateToXPositionMotionMagic(0.31654));
+        SmartDashboard.putData("ElevateToXPositionMotionMagic: Cargo", new ElevateToXPositionMotionMagic(0.550359));
+        SmartDashboard.putData("ElevateToXPositionMotionMagic: Mid-Rocket", new ElevateToXPositionMotionMagic(0.8381294));
         SmartDashboard.putData("StopElevator", new StopElevator());
         SmartDashboard.putData("OverrideElevator Up", new OverrideElevator(0.2));
         SmartDashboard.putData("OverrideElevator Down", new OverrideElevator(-0.2));
@@ -274,6 +257,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("BrakeOff", new BrakeOff());
         SmartDashboard.putData("TankDrive", new TankDrive());
         SmartDashboard.putData("ShooterFull", new ShooterFull());
+        SmartDashboard.putData("ToggleLight", new ToggleLight());
         }
     }
 }

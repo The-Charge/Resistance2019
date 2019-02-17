@@ -64,12 +64,12 @@ public class DriveTrain extends Subsystem {
 	private final static int PID_SLOT_SPEED_MODE = 1;
 	private final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 0;
     
-    private double MotionMagicP = 2;
-    private double MotionMagicI = 0.001;
-    private double MotionMagicD = 0;
-    private double MotionMagicF = 0.72;
-    private int MotionMagicAcceleration = 2500;
-    private int MotionMagicVelocity = 8000;
+    public double MotionMagicP = 2;
+    public double MotionMagicI = 0.001;
+    public double MotionMagicD = 0;
+    public double MotionMagicF = 0.72;
+    public int MotionMagicAcceleration = 2500;
+    public int MotionMagicVelocity = 8000;
     private int MotionMagicPIDIndex = 0;
     private int MotionMagicPIDSlot = 0;
     public double MotionMagicDistanceTicks;	
@@ -80,10 +80,6 @@ public class DriveTrain extends Subsystem {
 
     private final double TIMEOUT = 0.002;
     private static final AHRS ahrs = new AHRS(Port.kMXP);
-    private double turn_outer_speed;
-	private final double TURN_OUTER_SPEED_DEFAULT = 0.5;
-	private double turn_inner_speed;
-	private final double TURN_INNER_SPEED_DEFAULT = -0.5;
     
     private static boolean isReversed = false;
     private boolean driveLocked = false;
