@@ -106,12 +106,12 @@ public class OI {
         buttonBox = new Joystick(2);
         
         reverseIntakeBtn = new JoystickButton(buttonBox, 12);
-        reverseIntakeBtn.whileHeld(new RunIntake(-0.5));
-        elevateCargoShipBtn = new JoystickButton(buttonBox, 8);
+        reverseIntakeBtn.whileHeld(new ReverseLance());
+        elevateCargoShipBtn = new JoystickButton(buttonBox, 9);
         elevateCargoShipBtn.whenPressed(new ElevateToXPositionMotionMagic(0.55));
-        elevateMidRocketBtn = new JoystickButton(buttonBox, 9);
+        elevateMidRocketBtn = new JoystickButton(buttonBox, 7);
         elevateMidRocketBtn.whenPressed(new ElevateToXPositionMotionMagic(0.84));
-        elevateLowRocketBtn = new JoystickButton(buttonBox, 7);
+        elevateLowRocketBtn = new JoystickButton(buttonBox, 11);
         elevateLowRocketBtn.whenPressed(new ElevateToXPositionMotionMagic(0.32));
         extendLanceBtn = new JoystickButton(buttonBox, 4);
         extendLanceBtn.whenPressed(new ToggleLanceExtension());
