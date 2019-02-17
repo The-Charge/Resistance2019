@@ -241,7 +241,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("StopElevator", new StopElevator());
         SmartDashboard.putData("OverrideElevator Up", new OverrideElevator(0.2));
         SmartDashboard.putData("OverrideElevator Down", new OverrideElevator(-0.2));
-        SmartDashboard.putData("PutHatch", new PutHatch());
+        //SmartDashboard.putData("PutHatch", new PutHatch());
         SmartDashboard.putData("InvertDrive", new InvertDrive());
         SmartDashboard.putData("ShiftLow", new ShiftLow());
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
@@ -252,7 +252,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
         SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
         SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
-        SmartDashboard.putData("LightLineFollow", new LightLineFollow());
+        //SmartDashboard.putData("LightLineFollow", new LightLineFollow());
         SmartDashboard.putData("LightOn", new LightOn());
         SmartDashboard.putData("Run Shooter", new RunShooter(0.1));
         SmartDashboard.putData("BrakeOn", new BrakeOn());
