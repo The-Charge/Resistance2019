@@ -364,7 +364,7 @@ Children:
           validators: *id011
           value: '1'
       Base: Spike
-      Name: LineFollowLight
+      Name: SenseLight
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
