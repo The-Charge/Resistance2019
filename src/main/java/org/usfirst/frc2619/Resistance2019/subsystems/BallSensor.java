@@ -12,6 +12,7 @@
 package org.usfirst.frc2619.Resistance2019.subsystems;
 
 
+import org.usfirst.frc2619.Resistance2019.Robot;
 import org.usfirst.frc2619.Resistance2019.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -72,7 +73,8 @@ public class BallSensor extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public boolean isBallSensed(){
-        return ballSensor.get();
+        Robot.indicatorLights.ballSenseOn();
+        return ballSensor.get();    
     }
 
 }

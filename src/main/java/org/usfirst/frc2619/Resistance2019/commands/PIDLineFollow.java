@@ -113,7 +113,7 @@ public class PIDLineFollow extends PIDCommand {
     @Override
     protected boolean isFinished() {
 
-        return Robot.driveTrain.getCurrentAmps() > 4;
+        return Robot.driveTrain.getCurrentAmps() > 30;
     }
 
     // Called once after isFinished returns true
