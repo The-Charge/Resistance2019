@@ -58,28 +58,33 @@ public class DriveTrain extends Subsystem {
 	private double speedD = SPEED_D_CONSTANT;
 	private double speedF = SPEED_F_CONSTANT;
 	
-	private final int MAX_TICKS_PER_SECOND = 8691;
-    private final double TICKS_PER_FOOT = 4320;
+	private final int MAX_TICKS_PER_SECOND = 6500;
+	private final double TICKS_PER_FOOT = 49622;
 	private final int TIMEOUT_MS = 10;
 	private final static int PID_SLOT_SPEED_MODE = 1;
 	private final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 0;
-    
+	
+	//Public for tunning and debug:
     public double MotionMagicP = 2;
     public double MotionMagicI = 0.001;
     public double MotionMagicD = 0;
-    public double MotionMagicF = 0.72;
+	private double MotionMagicF = 0.72;
     public int MotionMagicAcceleration = 2500;
-    public int MotionMagicVelocity = 8000;
+	public int MotionMagicVelocity = 8000;
     private int MotionMagicPIDIndex = 0;
     private int MotionMagicPIDSlot = 0;
     public double MotionMagicDistanceTicks;	
-	//NOTE: no idea on units for this correction, may no to find later
-	public double correctionR = 1.02;	
+	//This correction value is a multiplyer for the right motor in motion magic calculations
+	public double correctionR = 1;	
 	public final static int MAX_MOTION_MAGIC_DISTANCE_TICKS = 500;
     
 
     private final double TIMEOUT = 0.002;
-    private static final AHRS ahrs = new AHRS(Port.kMXP);
+	private static final AHRS ahrs = new AHRS(Port.kMXP);
+	private double turn_outer_speed;
+	private final double TURN_OUTER_SPEED_DEFAULT = 0.5;
+	private double turn_inner_speed;
+	private final double TURN_INNER_SPEED_DEFAULT = -0.5;
     
     private static boolean isReversed = false;
     private boolean driveLocked = false;
@@ -196,6 +201,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void MotionMagicInit(double distance, int backVelocity, int backAcceleration) {
+		leftFrontMotor.setSelectedSensorPosition(0, MotionMagicPIDIndex, TIMEOUT_MS);
 		leftFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, MotionMagicPIDIndex, TIMEOUT_MS);
     	rightFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, MotionMagicPIDIndex, TIMEOUT_MS);
     	
@@ -323,11 +329,12 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public int getEncoderTicks(){
-		return leftFrontMotor.getSelectedSensorPosition();
+		return leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex);
 	}
 
 	public int getEncoderVelocity(){
 		return leftFrontMotor.getSelectedSensorVelocity();
 	}
+	
 }
 

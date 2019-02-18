@@ -175,7 +175,6 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Elevator Alert", elevator.safeToElevatePosition(elevator.getTarget())||elevator.safeToElevatePosition(elevator.getEncoder()));
         SmartDashboard.putBoolean("Extention Out", extension.getStatus());
         SmartDashboard.putNumber("Shooter Ticks Per Second", shooter.getTicksPerSecond());
-        // Put dashboard values for debugging here
 	}
 
     /**
@@ -184,8 +183,6 @@ public class Robot extends TimedRobot {
      * This code could be improved with a dictionary
      */
     public void dashboardDebugValues() {
-        
-        /*
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Velocity", driveTrain.getEncoderVelocity());
 
@@ -210,10 +207,10 @@ public class Robot extends TimedRobot {
             rewriteInitialValues = true;
         }
 
-        tempDouble = driveTrain.MotionMagicF;
-        tempDouble = SmartDashboard.getNumber("Drive F", tempDouble);
-        if (tempDouble != driveTrain.MotionMagicF){
-            driveTrain.MotionMagicF = tempDouble;
+        tempDouble = driveTrain.correctionR;
+        tempDouble = SmartDashboard.getNumber("Drive Correction", tempDouble);
+        if (tempDouble != driveTrain.correctionR){
+            driveTrain.correctionR = tempDouble;
             rewriteInitialValues = true;
         }
 
@@ -230,21 +227,23 @@ public class Robot extends TimedRobot {
             driveTrain.MotionMagicAcceleration = tempInt;
             rewriteInitialValues = true;
         }
-        */
+        
         
 
     }
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
-            /*
+        //Drive train live tunning:
         SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
         SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
         SmartDashboard.putNumber("Drive P", driveTrain.MotionMagicP);
         SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
         SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
-        SmartDashboard.putNumber("Drive F", driveTrain.MotionMagicF);
-        */
+        SmartDashboard.putNumber("Drive Correction", driveTrain.correctionR);
+        //--------------------------
+        
+        SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
         SmartDashboard.putData("Extend", new Extend());
@@ -269,12 +268,14 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
         //SmartDashboard.putData("LightLineFollow", new LightLineFollow());
         SmartDashboard.putData("LightOn", new LightOn());
-        SmartDashboard.putData("Run Shooter", new RunShooter(0.1));
+        SmartDashboard.putData("RunShooter Out", new RunShooter(0.5));
         SmartDashboard.putData("BrakeOn", new BrakeOn());
         SmartDashboard.putData("BrakeOff", new BrakeOff());
         SmartDashboard.putData("TankDrive", new TankDrive());
         SmartDashboard.putData("ShooterFull", new ShooterFull());
         SmartDashboard.putData("ToggleLight", new ToggleLight());
+        SmartDashboard.putData("RunIntake", new RunIntake(0.5));
+        SmartDashboard.putData("RunShooter In", new RunShooter(-0.4));
         }
     }
 }

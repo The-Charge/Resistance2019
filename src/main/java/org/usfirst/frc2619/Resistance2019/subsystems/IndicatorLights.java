@@ -93,6 +93,7 @@ public class IndicatorLights extends Subsystem {
         senseLight.set(Value.kOff);
     }
     public void ballSenseOn(){
+        /*
         for(int x = 0; x < 5; x++)
         {
             if (Robot.sensorBar.isOneSensed()) x = 5;
@@ -105,6 +106,7 @@ public class IndicatorLights extends Subsystem {
         }
         if (Robot.sensorBar.isOneSensed())   senseLight.set(Value.kOn);
         else senseLight.set(Value.kOff);
+        */
     }
     public Relay.Value lightStatus()
     {

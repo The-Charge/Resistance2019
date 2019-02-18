@@ -50,7 +50,7 @@ public class DriveXFeetMotionMagic extends Command {
     		Robot.driveTrain.MotionMagicInit(m_distance);
     	else
     		Robot.driveTrain.MotionMagicInit(m_distance, m_velocity, m_acceleration);
-        this.setTimeout(1);
+        this.setTimeout(5);
     }
 
     // Called repeatedly when this Command is scheduled to run

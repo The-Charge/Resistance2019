@@ -52,9 +52,9 @@ public class Elevator extends Subsystem {
 	
     private static final int MAX_TICKS_PER_SEC = 934;
 	
-	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 750;
-	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 650;
-	private final static double MOTION_MAGIC_P_CONSTANT = 1;
+	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 1750;
+	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 1000;
+	private final static double MOTION_MAGIC_P_CONSTANT = 0.3;
 	private final static double MOTION_MAGIC_I_CONSTANT = 0.001;
 	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
 	private final static double MOTION_MAGIC_F_CONSTANT = 10;
@@ -264,7 +264,7 @@ public class Elevator extends Subsystem {
     }
     
     public boolean isAtPIDDestination() {
-		return ((Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < MAX_MOTION_MAGIC_DISTANCE)&&safeToElevatePosition());// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
+		return ((Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < MAX_MOTION_MAGIC_DISTANCE)||!safeToElevatePosition());// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
 	}
 
 	public boolean safeToElevateVelocity(double percentSpeed)
@@ -293,6 +293,7 @@ public class Elevator extends Subsystem {
 			}
 			return true;			
 		}
+
 	}
 	public boolean safeToElevatePosition()
 	{
@@ -302,7 +303,7 @@ public class Elevator extends Subsystem {
 		}
 		else
 		{
-			return ((motor.getSelectedSensorPosition()>=SAFETY_LIMIT_TICKS)||(motor.getSelectedSensorPosition()<=LANCE_HEIGHT_TICKS));
+			return !((motor.getSelectedSensorPosition()<=SAFETY_LIMIT_TICKS)&(motor.getSelectedSensorPosition()>=LANCE_HEIGHT_TICKS));
 		}
 	}
 	public boolean safeToElevatePosition(double position)
