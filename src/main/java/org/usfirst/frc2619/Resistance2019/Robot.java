@@ -185,7 +185,7 @@ public class Robot extends TimedRobot {
      */
     public void dashboardDebugValues() {
         
-        
+        /*
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Velocity", driveTrain.getEncoderVelocity());
 
@@ -230,18 +230,21 @@ public class Robot extends TimedRobot {
             driveTrain.MotionMagicAcceleration = tempInt;
             rewriteInitialValues = true;
         }
+        */
         
 
     }
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
+            /*
         SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
         SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
         SmartDashboard.putNumber("Drive P", driveTrain.MotionMagicP);
         SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
         SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
         SmartDashboard.putNumber("Drive F", driveTrain.MotionMagicF);
+        */
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
         SmartDashboard.putData("Extend", new Extend());
