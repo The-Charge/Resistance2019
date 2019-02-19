@@ -274,10 +274,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("BrakeOn", new BrakeOn());
         SmartDashboard.putData("BrakeOff", new BrakeOff());
         SmartDashboard.putData("TankDrive", new TankDrive());
-        SmartDashboard.putData("ShooterFull", new ShooterFull());
         SmartDashboard.putData("ToggleLight", new ToggleLight());
         SmartDashboard.putData("RunIntake", new RunIntake(0.5));
         SmartDashboard.putData("RunShooter In", new RunShooter(-0.4));
+        SmartDashboard.putData("RunHatchMotor", new RunHatchMotor());
         }
     }
 }
