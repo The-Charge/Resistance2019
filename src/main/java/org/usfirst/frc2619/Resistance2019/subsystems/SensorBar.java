@@ -94,10 +94,10 @@ public class SensorBar extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         if (isOneSensed()){
-            Robot.indicatorLights.lightOn();
+            Robot.indicatorLights.lightLineFollowOn();
         }
         else{
-            Robot.indicatorLights.lightOff();
+            Robot.indicatorLights.lightLineFollowOff();
         }
     }
 
@@ -119,6 +119,7 @@ public class SensorBar extends Subsystem {
             }
         }
         SmartDashboard.putBoolean("Sensors", seesLine);
+        
         return seesLine;
     }
 
