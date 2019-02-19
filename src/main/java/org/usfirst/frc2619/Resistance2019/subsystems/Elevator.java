@@ -232,26 +232,24 @@ public class Elevator extends Subsystem {
 	
 	//Checks if the elevator is within the error range
     public boolean isAtPIDDestination() {
-		return ((Math.abs(this.motor.getSelectedSensorPosition(0) - MotionMagicDistance) < MAX_MOTION_MAGIC_DISTANCE)||!safeToElevatePosition());// || this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex) < -MotionMagicDistance + 6000)
+		double error = Math.abs(getPIDError());
+		return error < MAX_MOTION_MAGIC_DISTANCE || !safeToElevatePosition();
+	}
+
+	public double getPIDError(){
+		return getTicks() - getTarget();
 	}
 
 	//Checks if the elevator is safe to move
 	public boolean safeToElevatePosition()
 	{
-		if (Robot.extension.getStatus()) 
-		{
-			return true;
-		}
-		else
-		{
-			return !((motor.getSelectedSensorPosition()<=SAFETY_LIMIT_TICKS)&(motor.getSelectedSensorPosition()>=LANCE_HEIGHT_TICKS));
-		}
+		return safeToElevatePosition(getTicks());
 	}
 
 	//chekcs if the elevator is safe to move to a position
 	public boolean safeToElevatePosition(double position)
 	{
-		if (Robot.extension.getStatus()) 
+		if (Robot.extension.isExtended()) 
 		{
 			return true;
 		}
@@ -262,14 +260,9 @@ public class Elevator extends Subsystem {
 	}
 
 	//Debug values
-
 	public double getTicks()
 	{
 		return motor.getSelectedSensorPosition();
-	}
-
-	public int getEncoder(){
-		return motor.getSelectedSensorPosition(0);
 	}
 
 	public double getMotorOutput(){

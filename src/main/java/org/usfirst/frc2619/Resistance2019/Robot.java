@@ -170,10 +170,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
         SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
 
-        SmartDashboard.putNumber("Elevator Encoder", elevator.getEncoder());
+        SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
-        SmartDashboard.putBoolean("Elevator Alert", elevator.safeToElevatePosition(elevator.getTarget())||elevator.safeToElevatePosition(elevator.getEncoder()));
-        SmartDashboard.putBoolean("Extention Out", extension.getStatus());
+        SmartDashboard.putBoolean("Elevator Alert", elevator.safeToElevatePosition(elevator.getTarget())||elevator.safeToElevatePosition(elevator.getTicks()));
+        SmartDashboard.putBoolean("Extention Out", extension.isExtended());
         SmartDashboard.putNumber("Shooter Ticks Per Second", shooter.getTicksPerSecond());
 	}
 

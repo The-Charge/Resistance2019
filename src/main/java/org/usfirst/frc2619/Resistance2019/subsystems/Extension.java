@@ -89,10 +89,11 @@ public class Extension extends Subsystem {
 	public void retract() {
         doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
-    
-    public boolean getStatus()
+
+    public boolean isExtended()
     {
         //DO NOT REMOVE THE NOT NOT!!!!!
+        //NOTE: this is an easter egg
         return ! ! limitSwitch.get();
         //It is the greatest thing in history!!!!!
     }
