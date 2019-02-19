@@ -110,12 +110,19 @@ public class Hatchers extends Subsystem {
         }
         return false;
     }
+
     public void stop()
     {
         windowMotor.set(ControlMode.PercentOutput, 0);
     }
-  
 
+    public boolean isUp(){
+        return isUp;
+    }
+
+    public boolean isKickerOut(){
+        return solenoid.get();
+    }
     
 }
 

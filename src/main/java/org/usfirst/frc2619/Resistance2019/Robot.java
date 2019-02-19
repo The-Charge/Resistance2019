@@ -138,7 +138,6 @@ public class Robot extends TimedRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        SmartDashboard.putBoolean("Elevator Error", false);
 
     }
 
@@ -175,8 +174,14 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
         SmartDashboard.putBoolean("Elevator Alert", elevator.safeToElevatePosition(elevator.getTarget())||elevator.safeToElevatePosition(elevator.getTicks()));
+
         SmartDashboard.putBoolean("Extention Out", extension.isExtended());
-        SmartDashboard.putNumber("Shooter Ticks Per Second", shooter.getTicksPerSecond());
+        SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
+        SmartDashboard.putBoolean("Collector Running In", intake.isRunningIn());
+        SmartDashboard.putBoolean("Shooter Running Out", shooter.isRunningOut());
+        SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
+        SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
+        SmartDashboard.putBoolean("Hatch Kicker Out", hatchers.isKickerOut());
 	}
 
     /**
@@ -187,6 +192,8 @@ public class Robot extends TimedRobot {
     public void dashboardDebugValues() {
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
+
+        SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
@@ -236,20 +243,35 @@ public class Robot extends TimedRobot {
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
-        //Drive train live tunning:
+        //DriveTrain live tunning:
         SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
         SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
         SmartDashboard.putNumber("Drive P", driveTrain.MotionMagicP);
         SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
         SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
         SmartDashboard.putNumber("Drive Correction", driveTrain.correctionR);
-        //--------------------------
-        
+
+        //DriveTrain commands
+        SmartDashboard.putData("InvertDrive", new InvertDrive());
+        SmartDashboard.putData("ShiftLow", new ShiftLow());
+        SmartDashboard.putData("ShiftHigh", new ShiftHigh());
+        SmartDashboard.putData("LockStraight", new LockStraight());
+        SmartDashboard.putData("TankDrive", new TankDrive());
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
+        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
+        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
+        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
+        SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
+        SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
+        //SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
+    
+        //Extension commands
         SmartDashboard.putData("Extend", new Extend());
         SmartDashboard.putData("Retract", new Retract());
+
+        //Elevator commands
         SmartDashboard.putData("ElevateToXPositionMotionMagic: BallCollect", new ElevateToXPositionMotionMagic(0));
         SmartDashboard.putData("ElevateToXPositionMotionMagic: Low-Rocket", new ElevateToXPositionMotionMagic(0.31654));
         SmartDashboard.putData("ElevateToXPositionMotionMagic: Cargo", new ElevateToXPositionMotionMagic(0.550359));
@@ -257,27 +279,25 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("StopElevator", new StopElevator());
         SmartDashboard.putData("OverrideElevator Up", new OverrideElevator(0.2));
         SmartDashboard.putData("OverrideElevator Down", new OverrideElevator(-0.2));
-        //SmartDashboard.putData("PutHatch", new PutHatch());
-        SmartDashboard.putData("InvertDrive", new InvertDrive());
-        SmartDashboard.putData("ShiftLow", new ShiftLow());
-        SmartDashboard.putData("ShiftHigh", new ShiftHigh());
-        SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
-        SmartDashboard.putData("LockStraight", new LockStraight());
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
-        SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
-        SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
-        //SmartDashboard.putData("LightLineFollow", new LightLineFollow());
-        SmartDashboard.putData("LightOn", new LightOn());
-        SmartDashboard.putData("RunShooter Out", new RunShooter(0.5));
         SmartDashboard.putData("BrakeOn", new BrakeOn());
         SmartDashboard.putData("BrakeOff", new BrakeOff());
-        SmartDashboard.putData("TankDrive", new TankDrive());
-        SmartDashboard.putData("ToggleLight", new ToggleLight());
-        SmartDashboard.putData("RunIntake", new RunIntake(0.5));
-        SmartDashboard.putData("RunShooter In", new RunShooter(-0.4));
+
+        //Hatcher commands
+        SmartDashboard.putData("PutHatch", new PutHatch());
         SmartDashboard.putData("RunHatchMotor", new RunHatchMotor());
+
+        //Shooter commands
+        SmartDashboard.putData("RunShooter Out", new RunShooter(0.5));
+        SmartDashboard.putData("RunShooter In", new RunShooter(-0.4));
+
+        //Intake commands
+        SmartDashboard.putData("RunIntake In", new RunIntake(0.4));
+        SmartDashboard.putData("RunIntake Out", new RunIntake(-0.5));
+
+        //IndicatorLights commands
+        SmartDashboard.putData("ToggleLight", new ToggleLight());
+        //SmartDashboard.putData("UpdateLights", new UpdateLights());
+        //SmartDashboard.putData("LightOn", new LightOn());
         }
     }
 }

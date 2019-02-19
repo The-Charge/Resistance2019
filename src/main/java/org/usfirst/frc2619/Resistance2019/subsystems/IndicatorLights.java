@@ -100,6 +100,7 @@ public class IndicatorLights extends Subsystem {
     public void lightLineFollowOff(){
         senseLight.set(Value.kOff);
     }
+    //this method is designed to blink the indicator light when a ball is sensed
     public void ballSense(){
         if (Robot.ballSensor.isBallSensed()){
             if (lastBallTriggered != Robot.ballSensor.isBallSensed()){
