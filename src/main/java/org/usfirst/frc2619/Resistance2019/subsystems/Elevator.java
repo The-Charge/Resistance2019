@@ -255,7 +255,7 @@ public class Elevator extends Subsystem {
 		}
 		else
 		{
-			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS));
+			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
 		}
 	}
 
