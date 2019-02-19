@@ -30,7 +30,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber extends Subsystem {
 
     private CANSparkMax climberMotor;
-
+    private final double ROTATIONS_TO_CLIMB = 0.53;
     
 
     public Climber() {
@@ -59,6 +59,11 @@ public class Climber extends Subsystem {
     public void stop()
     {
         climberMotor.set(0);
+    }
+    public boolean reached()
+    {
+        if (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB) return true;
+        else return false;
     }
 
   
