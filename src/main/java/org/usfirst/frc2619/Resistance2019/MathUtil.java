@@ -16,21 +16,24 @@ public class MathUtil {
 		return direction;
 	}	//return +1 if direction is CW, -1 if CCW - copied from SteamBot
 
+	//limits a value to a max and min
 	public static double clamp(double input, double min, double max){
 		input = input < min ? min : input;
 		input = input > max ? max : input;
 		return input;
 	}
 
+	//calls deadband and delin
     public static double adjSpeed(double speed) {
-    	double dB = SmartDashboard.getNumber("Deadband", .1);
-    	double root = SmartDashboard.getNumber("Root", 1);
-    	double power = SmartDashboard.getNumber("Power", 3);
+    	double dB = 0.1;
+    	double root = 1;
+    	double power = 3;
     	speed = MathUtil.deadband(speed, dB);
     	speed = MathUtil.delin(speed, dB , root, power);
     	return speed;
     }
 	
+	//Prevents the robot from moving while the joysticks are close to the center
 	public static double deadband(double speed, double dead){
 		if (-dead < speed && speed < dead) 
 			return 0;
@@ -38,6 +41,7 @@ public class MathUtil {
 			return speed;
 	}//checks if speed is inbetween -dB and +dB then it should be set to zero
 	
+	//Applies delinerization
 	public static double delin(double speed, double dead, double root, double pwr){
 		double evn = (pwr/root) % 2;
 		double invdB = Math.pow(1 - dead,-1);
@@ -53,6 +57,7 @@ public class MathUtil {
 		else return 0;
 	}//
 
+	//Maps a ranged value between 0 and 1
 	public static double lerp(double input, double max, double min){
 		return (input-min)/(max-min);
 	}

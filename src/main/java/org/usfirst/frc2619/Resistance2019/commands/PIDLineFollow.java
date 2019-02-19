@@ -54,7 +54,7 @@ public class PIDLineFollow extends PIDCommand {
     }
 
     @Override
-    protected double returnPIDInput() { //read sensors.. find doe..
+    protected double returnPIDInput() { //read sensors..
         boolean[] sensbool = new boolean[5]; //Var to hold boolean values and be easily changed
         int counter = 0; //self explanatory - used to count current sensors active
         int total = 0; //self explanatory - total of sensor assigned integer positions

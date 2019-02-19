@@ -92,14 +92,9 @@ public class Extension extends Subsystem {
     
     public boolean getStatus()
     {
-        return !!limitSwitch.get();
-        //The greatest story in history!!!!!
-    }
-
-    public boolean safeToRetract()
-    {
-        if (Robot.elevator.getTicks() >= SAFETY_LIMIT) return true;
-        else return false;
+        //DO NOT REMOVE THE NOT NOT!!!!!
+        return ! ! limitSwitch.get();
+        //It is the greatest thing in history!!!!!
     }
 
 }
