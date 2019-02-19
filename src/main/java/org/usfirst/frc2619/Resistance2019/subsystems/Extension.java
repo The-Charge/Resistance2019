@@ -90,14 +90,17 @@ public class Extension extends Subsystem {
         doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
+    //TODO: Give this a better name (like "is extended" or "is retracted" or whatever it is)
     public boolean getStatus()
     {
+        //TODO: Greatest story that should remain a story (and not code)
         return !!limitSwitch.get();
         //The greatest story in history!!!!!
     }
 
     public boolean safeToRetract()
     {
+        //TODO: Can switch this to just "return Robot.elevator.getTicks() >= SAFETY_LIMIT"
         if (Robot.elevator.getTicks() >= SAFETY_LIMIT) return true;
         else return false;
     }
