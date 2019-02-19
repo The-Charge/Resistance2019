@@ -62,6 +62,8 @@ public class OI {
     public JoystickButton reverseIntakeBtn;
     public JoystickButton climbBtn;
     public JoystickButton reverseClimbBtn;
+    public JoystickButton collectBtn;
+    public JoystickButton resetCollectBtn;
     public Joystick buttonBox;
     public JoystickButton lockStraightBtn;
     public JoystickButton lineFollowBtn;
@@ -107,6 +109,10 @@ public class OI {
         lockStraightBtn.whileHeld(new LockStraight());
         buttonBox = new Joystick(2);
         
+        resetCollectBtn = new JoystickButton(buttonBox, 2);
+        resetCollectBtn.whenReleased(new ResetCollect());
+        collectBtn = new JoystickButton(buttonBox, 2);
+        collectBtn.whileHeld(new CollectCargo());
         reverseClimbBtn = new JoystickButton(buttonBox, 10);
         reverseClimbBtn.whileHeld(new Climb(-0.5));
         climbBtn = new JoystickButton(buttonBox, 8);
@@ -122,7 +128,7 @@ public class OI {
         extendLanceBtn = new JoystickButton(buttonBox, 4);
         extendLanceBtn.whenPressed(new ToggleLanceExtension());
         shootBallBtn = new JoystickButton(buttonBox, 1);
-        shootBallBtn.whileHeld(new RunShooter(0.65));
+        shootBallBtn.whileHeld(new RunShooter(0.5));
         overrideDownElevatorBtn = new JoystickButton(buttonBox, 3);
         overrideDownElevatorBtn.whileHeld(new OverrideElevator(-0.1));
         overrideUpElevatorBtn = new JoystickButton(buttonBox, 5);
