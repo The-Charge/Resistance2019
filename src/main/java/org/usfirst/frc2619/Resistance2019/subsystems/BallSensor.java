@@ -73,7 +73,7 @@ public class BallSensor extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public boolean isBallSensed(){
-        Robot.indicatorLights.ballSenseOn();
+      
         return ballSensor.get();    
     }
 
