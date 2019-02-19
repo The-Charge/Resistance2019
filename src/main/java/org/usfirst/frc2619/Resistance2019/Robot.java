@@ -184,7 +184,7 @@ public class Robot extends TimedRobot {
      */
     public void dashboardDebugValues() {
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
-        SmartDashboard.putNumber("Drive Velocity", driveTrain.getEncoderVelocity());
+        SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
 
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
