@@ -302,7 +302,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("RunShooter In", new RunShooter(-0.4));
 
         //Intake commands
-        SmartDashboard.putData("RunIntake In", new RunIntake(0.4));
+        SmartDashboard.putData("RunIntake In", new RunIntake(0.7));
         SmartDashboard.putData("RunIntake Out", new RunIntake(-0.5));
 
         //Climber
