@@ -84,9 +84,8 @@ public class Elevator extends Subsystem {
 	private double minSecsMinToFullThrottleIfDown = 1;
 
 	// NOTE: movable is becoming movableUp and movableDown
-    public boolean movable = true;
-	public static int SAFETY_LIMIT_TICKS = 8900;
-	public static int LANCE_HEIGHT_TICKS = 1540 ;
+	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
+	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
     public boolean isUp = false;
 
     public Elevator() {
@@ -233,7 +232,7 @@ public class Elevator extends Subsystem {
 	//Checks if the elevator is within the error range
     public boolean isAtPIDDestination() {
 		double error = Math.abs(getPIDError());
-		return error < MAX_MOTION_MAGIC_DISTANCE || !safeToElevatePosition();
+		return error < MAX_MOTION_MAGIC_DISTANCE || ( getTarget() < getTicks() ? !safeToElevatePositionDown() : !safeToElevatePositionUp());
 	}
 
 	public double getPIDError(){
@@ -241,10 +240,37 @@ public class Elevator extends Subsystem {
 	}
 
 	//Checks if the elevator is safe to move
+	public boolean safeToElevatePositionUp()
+	{
+		return safeToElevatePositionUp(getTicks());
+	}
+
+	
+	//Checks if the elevator is safe to move
+	public boolean safeToElevatePositionDown()
+	{
+		return safeToElevatePositionDown(getTicks());
+	}
+	
+	//Checks if the elevator is safe to move
 	public boolean safeToElevatePosition()
 	{
 		return safeToElevatePosition(getTicks());
 	}
+
+	//chekcs if the elevator is safe to move to a position
+	public boolean safeToElevatePositionUp(double position)
+	{
+		if (Robot.extension.isExtended()) 
+		{
+			return true;
+		}
+		else
+		{
+			return ((position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
+		}
+	}
+
 
 	//chekcs if the elevator is safe to move to a position
 	public boolean safeToElevatePosition(double position)
@@ -256,6 +282,19 @@ public class Elevator extends Subsystem {
 		else
 		{
 			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
+		}
+	}
+
+	//chekcs if the elevator is safe to move to a position
+	public boolean safeToElevatePositionDown(double position)
+	{
+		if (Robot.extension.isExtended()) 
+		{
+			return true;
+		}
+		else
+		{
+			return ((position>=SAFETY_LIMIT_TICKS));
 		}
 	}
 

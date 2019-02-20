@@ -42,7 +42,7 @@ public class ElevateToXPositionMotionMagic extends Command {
     protected void initialize() {
         Robot.elevator.brakeOff();
         Robot.elevator.MotionMagicInit(m_position);
-        this.setTimeout(3);
+        this.setTimeout(5);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Auto mode", chooser);
         writeInitialDashboardValues();
 
-        visionPort = VisionUtil.createSerialPort();
+        //visionPort = VisionUtil.createSerialPort();
     }
 
     /**
@@ -113,7 +113,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit(){
-
     }
 
     @Override
@@ -138,6 +137,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        indicatorLights.lightOn();
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
@@ -187,6 +187,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
         SmartDashboard.putBoolean("Hatch Kicker Out", hatchers.isKickerOut());
+        SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 	}
 
     /**
@@ -197,8 +198,6 @@ public class Robot extends TimedRobot {
     public void dashboardDebugValues() {
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
-
-        SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
@@ -242,6 +241,12 @@ public class Robot extends TimedRobot {
             rewriteInitialValues = true;
         }
         
+        tempInt = elevator.SAFETY_LIMIT_TICKS;
+        tempInt = (int)SmartDashboard.getNumber("Safety Position", tempInt);
+        if (tempInt != elevator.SAFETY_LIMIT_TICKS){
+            elevator.SAFETY_LIMIT_TICKS = tempInt;
+            rewriteInitialValues = true;
+        }
         
 
     }
@@ -255,6 +260,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
         SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
         SmartDashboard.putNumber("Drive Correction", driveTrain.correctionR);
+        SmartDashboard.putNumber("Safety Position", elevator.SAFETY_LIMIT_TICKS);
 
         //DriveTrain commands
         SmartDashboard.putData("InvertDrive", new InvertDrive());
@@ -298,6 +304,9 @@ public class Robot extends TimedRobot {
         //Intake commands
         SmartDashboard.putData("RunIntake In", new RunIntake(0.4));
         SmartDashboard.putData("RunIntake Out", new RunIntake(-0.5));
+
+        //Climber
+        SmartDashboard.putData("Climb", new Climb(0.5));
 
         //IndicatorLights commands
         SmartDashboard.putData("ToggleLight", new ToggleLight());

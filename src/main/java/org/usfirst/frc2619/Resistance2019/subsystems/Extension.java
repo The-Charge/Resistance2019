@@ -49,7 +49,7 @@ public class Extension extends Subsystem {
         addChild("DoubleSolenoid",doubleSolenoid);
         
         
-        limitSwitch = new DigitalInput(6);
+        limitSwitch = new DigitalInput(9);
         addChild("LimitSwitch",limitSwitch);
         
         

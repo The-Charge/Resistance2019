@@ -85,34 +85,34 @@ public class IndicatorLights extends Subsystem {
     // here. Call these from Commands.
 
     public void lightOn(){
-        light.set(Value.kOff);
+        light.set(Value.kReverse);
         //The logic is inverse for this relay spike.
     }
 
     public void lightOff(){
-        light.set(Value.kOn);
+        light.set(Value.kForward);
     }
 
     public void lightLineFollowOn(){
-        senseLight.set(Value.kOn);
+        senseLight.set(Value.kForward);
     }
 
     public void lightLineFollowOff(){
-        senseLight.set(Value.kOff);
+        senseLight.set(Value.kReverse);
     }
     //this method is designed to blink the indicator light when a ball is sensed
     public void ballSense(){
         if (Robot.ballSensor.isBallSensed()){
             if (lastBallTriggered != Robot.ballSensor.isBallSensed()){
                 lightTimer.reset();
-                senseLight.set(Value.kOn);
+                senseLight.set(Value.kForward);
                 state = 1;
             }
             else if (state <= BLINKS)
             {
                 if (lightTimer.get() > SECONDS_BETWEEN_BLINKS*state){
                     state++;
-                    senseLight.set(senseLight.get().equals(Value.kOn) ? Value.kOff : Value.kOn);
+                    senseLight.set(senseLight.get().equals(Value.kForward) ? Value.kReverse : Value.kForward);
                 }
             }
         }
