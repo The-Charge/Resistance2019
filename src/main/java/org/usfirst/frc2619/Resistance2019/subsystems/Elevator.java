@@ -86,6 +86,7 @@ public class Elevator extends Subsystem {
 	// NOTE: movable is becoming movableUp and movableDown
 	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
 	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
+	public int SAFETY_MID_TICKS = 5220;//lower safety position
     public boolean isUp = false;
 
     public Elevator() {
@@ -265,10 +266,8 @@ public class Elevator extends Subsystem {
 		{
 			return true;
 		}
-		else
-		{
-			return ((position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
-		}
+		else if (position < SAFETY_MID_TICKS && position > LANCE_HEIGHT_TICKS) return false;
+		return true;
 	}
 
 
@@ -292,10 +291,8 @@ public class Elevator extends Subsystem {
 		{
 			return true;
 		}
-		else
-		{
-			return ((position>=SAFETY_LIMIT_TICKS));
-		}
+		else if (position < SAFETY_LIMIT_TICKS && position > SAFETY_MID_TICKS) return false;
+		return true;
 	}
 
 	//Debug values
