@@ -38,7 +38,7 @@ public class Retract extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
-        if ( Robot.elevator.safeToElevatePosition() ){
+        if ( Robot.elevator.safeToRetract() ){
             Robot.extension.retract();
         }
     }

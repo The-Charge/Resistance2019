@@ -101,7 +101,7 @@ public class Extension extends Subsystem {
     public void toggle(){
         if (doubleSolenoid.get().equals(DoubleSolenoid.Value.kReverse)){
             extend();
-        }else if (Robot.elevator.safeToElevatePosition()){
+        }else if (Robot.elevator.safeToRetract()){
             retract();
         }
     }

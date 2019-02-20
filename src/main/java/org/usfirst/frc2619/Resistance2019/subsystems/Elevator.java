@@ -57,7 +57,7 @@ public class Elevator extends Subsystem {
 	private final static double MOTION_MAGIC_P_CONSTANT = 0.3;
 	private final static double MOTION_MAGIC_I_CONSTANT = 0.001;
 	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
-	private final static double MOTION_MAGIC_F_CONSTANT = 10;
+	private final static double MOTION_MAGIC_F_CONSTANT = 1;
 	
 	private static int TICKS_TO_TOP = 28000;
 	private static int TICKS_TO_BOTTOM = 200;
@@ -86,7 +86,7 @@ public class Elevator extends Subsystem {
 	// NOTE: movable is becoming movableUp and movableDown
 	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
 	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
-	public int SAFETY_MID_TICKS = 5220;//lower safety position
+	public int SAFETY_MID_TICKS = 4220;//mid safety position
     public boolean isUp = false;
 
     public Elevator() {
@@ -254,9 +254,9 @@ public class Elevator extends Subsystem {
 	}
 	
 	//Checks if the elevator is safe to move
-	public boolean safeToElevatePosition()
+	public boolean safeToRetract()
 	{
-		return safeToElevatePosition(getTicks());
+		return safeToRetract(getTicks());
 	}
 
 	//chekcs if the elevator is safe to move to a position
@@ -272,16 +272,10 @@ public class Elevator extends Subsystem {
 
 
 	//chekcs if the elevator is safe to move to a position
-	public boolean safeToElevatePosition(double position)
+	public boolean safeToRetract(double position)
 	{
-		if (Robot.extension.isExtended()) 
-		{
-			return true;
-		}
-		else
-		{
 			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
-		}
+		
 	}
 
 	//chekcs if the elevator is safe to move to a position

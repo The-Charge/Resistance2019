@@ -178,7 +178,7 @@ public class Robot extends TimedRobot {
 
         SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
-        SmartDashboard.putBoolean("Elevator Alert", elevator.safeToElevatePosition(elevator.getTarget())||elevator.safeToElevatePosition(elevator.getTicks()));
+        SmartDashboard.putBoolean("Elevator Alert", (!elevator.safeToElevatePositionUp()) || (!elevator.safeToElevatePositionDown()));
 
         SmartDashboard.putBoolean("Extention Out", extension.isExtended());
         SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
@@ -198,6 +198,11 @@ public class Robot extends TimedRobot {
     public void dashboardDebugValues() {
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
+        SmartDashboard.putBoolean("Can Elevator Move Up", elevator.safeToElevatePositionUp());
+        SmartDashboard.putBoolean("Can Elevator Move Down", elevator.safeToElevatePositionDown());
+        SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());
+        SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
+        SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
 
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
@@ -287,15 +292,18 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("ElevateToXPositionMotionMagic: Low-Rocket", new ElevateToXPositionMotionMagic(0.31654));
         SmartDashboard.putData("ElevateToXPositionMotionMagic: Cargo", new ElevateToXPositionMotionMagic(0.550359));
         SmartDashboard.putData("ElevateToXPositionMotionMagic: Mid-Rocket", new ElevateToXPositionMotionMagic(0.8381294));
-        SmartDashboard.putData("StopElevator", new StopElevator());
         SmartDashboard.putData("OverrideElevator Up", new OverrideElevator(0.2));
         SmartDashboard.putData("OverrideElevator Down", new OverrideElevator(-0.2));
         SmartDashboard.putData("BrakeOn", new BrakeOn());
         SmartDashboard.putData("BrakeOff", new BrakeOff());
+        //SmartDashboard.putData("StopElevator", new StopElevator());
 
         //Hatcher commands
-        SmartDashboard.putData("PutHatch", new PutHatch());
+        SmartDashboard.putData("HatchGrab", new HatchGrab());
+        SmartDashboard.putData("HatchRelease", new HatchRelease());
         SmartDashboard.putData("RunHatchMotor", new RunHatchMotor());
+        SmartDashboard.putData("HatchUp", new HatchUp());
+        SmartDashboard.putData("HatchDown", new HatchDown());
 
         //Shooter commands
         SmartDashboard.putData("RunShooter Out", new RunShooter(0.5));
@@ -305,10 +313,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("RunIntake In", new RunIntake(0.7));
         SmartDashboard.putData("RunIntake Out", new RunIntake(-0.5));
 
-        //Climber
+        //Other commands
         SmartDashboard.putData("Climb", new Climb(0.5));
-
-        //IndicatorLights commands
+        SmartDashboard.putData("Collect", new CollectCargo());
+        SmartDashboard.putData("ResetCollect", new ResetCollect());
         SmartDashboard.putData("ToggleLight", new ToggleLight());
         //SmartDashboard.putData("UpdateLights", new UpdateLights());
         //SmartDashboard.putData("LightOn", new LightOn());
