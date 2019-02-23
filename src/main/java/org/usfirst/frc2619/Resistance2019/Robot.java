@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2619.Resistance2019.commands.*;
 import org.usfirst.frc2619.Resistance2019.subsystems.*;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.wpilibj.SerialPort;
 
 /**

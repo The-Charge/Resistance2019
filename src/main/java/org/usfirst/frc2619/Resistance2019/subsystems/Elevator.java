@@ -84,9 +84,9 @@ public class Elevator extends Subsystem {
 	private double minSecsMinToFullThrottleIfDown = 1;
 
 	// NOTE: movable is becoming movableUp and movableDown
-	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
-	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
+	public int SAFETY_LIMIT_TICKS = 8450;//upper safety position
 	public int SAFETY_MID_TICKS = 4220;//mid safety position
+	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
     public boolean isUp = false;
 
     public Elevator() {
