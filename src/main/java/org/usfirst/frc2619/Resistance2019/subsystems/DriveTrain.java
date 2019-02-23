@@ -140,6 +140,14 @@ public class DriveTrain extends Subsystem {
 	
     public void driveTrainInit() {
 		setNeutralMode();
+
+		//Set rear motors to follow the front
+		leftRearMotor.follow(leftFrontMotor);
+		rightRearMotor.follow(rightFrontMotor);
+	
+		//Set the right motors inverted
+		rightFrontMotor.setInverted(true);
+		rightRearMotor.setInverted(true);
     }
 
 	//the basic run method for driving the robot. (Drive booleans are implimented here)

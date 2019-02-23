@@ -186,7 +186,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Shooter Running Out", shooter.isRunningOut());
         SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
-        SmartDashboard.putBoolean("Hatch Grabber Out", hatchers.isGrabberOut());
+        SmartDashboard.putBoolean("Hatch Grab", hatchers.isGrabberOut());
         SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 	}
 
