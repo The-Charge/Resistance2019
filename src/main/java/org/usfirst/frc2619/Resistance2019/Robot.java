@@ -258,6 +258,7 @@ public class Robot extends TimedRobot {
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
+        SmartDashboard.putNumber("Timer", indicatorLights.lightTimer.get());
         //DriveTrain live tunning:
         SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
         SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
