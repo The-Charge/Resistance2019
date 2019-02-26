@@ -14,6 +14,7 @@ package org.usfirst.frc2619.Resistance2019.subsystems;
 
 import org.usfirst.frc2619.Resistance2019.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -30,7 +31,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber extends Subsystem {
 
     private CANSparkMax climberMotor;
-    private final double ROTATIONS_TO_CLIMB = 0.53;
+    private final double ROTATIONS_TO_CLIMB = 30;
     
 
     public Climber() {
@@ -62,8 +63,13 @@ public class Climber extends Subsystem {
     }
     public boolean reached()
     {
+        SmartDashboard.putNumber("Climber Motor", climberMotor.getEncoder().getPosition());
         if (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB) return true;
         else return false;
+    }
+    public void reset()
+    {
+        climberMotor.getEncoder().setPosition(0);
     }
 
   
