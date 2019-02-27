@@ -59,7 +59,7 @@ public class Elevator extends Subsystem {
 	private final static double MOTION_MAGIC_P_CONSTANT = 2;
 	private final static double MOTION_MAGIC_I_CONSTANT = 0.0;
 	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
-	private final static double MOTION_MAGIC_F_CONSTANT = 2;
+	private final static double MOTION_MAGIC_F_CONSTANT = 10;
 	
 	private static int TICKS_TO_TOP = 28000;
 	private static int TICKS_TO_BOTTOM = 200;
@@ -87,9 +87,9 @@ public class Elevator extends Subsystem {
 	private double minSecsMinToFullThrottleIfDown = 1;
 
 	// NOTE: movable is becoming movableUp and movableDown
-	public int SAFETY_LIMIT_TICKS = 8450;//upper safety position
-	public int SAFETY_MID_TICKS = 4220;//mid safety position
+	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
 	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
+	public int SAFETY_MID_TICKS = 4220;//mid safety position
     public boolean isUp = false;
 
     public Elevator() {
@@ -279,7 +279,8 @@ public class Elevator extends Subsystem {
 	//chekcs if the elevator is safe to move to a position
 	public boolean safeToRetract(double position)
 	{
-			return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
+		
+		return ((position>=SAFETY_LIMIT_TICKS)||(position<=LANCE_HEIGHT_TICKS && !Robot.ballSensor.isBallSensed()));
 		
 	}
 
