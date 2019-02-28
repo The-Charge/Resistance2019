@@ -104,7 +104,11 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Auto mode", chooser);
         writeInitialDashboardValues();
 
-        //visionPort = VisionUtil.createSerialPort();
+        try {
+            visionPort = VisionUtil.createSerialPort();
+        } catch(Exception e) {
+            visionPort = null;
+        }
     }
 
     /**
@@ -160,6 +164,7 @@ public class Robot extends TimedRobot {
             writeInitialDashboardValues();
             rewriteInitialValues = false;
         }
+
     }
 
     /**

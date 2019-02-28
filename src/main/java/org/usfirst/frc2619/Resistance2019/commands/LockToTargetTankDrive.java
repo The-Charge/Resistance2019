@@ -59,6 +59,9 @@ public class LockToTargetTankDrive extends PIDCommand {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
         
+        //note: this method seems to throw an error when the robot initializes
+        //      it won't crash the robot though
+
         camInfo = VisionUtil.getSerialInfo(Robot.visionPort);
 
         SmartDashboard.putString("VisionData", camInfo.toString());
@@ -66,7 +69,7 @@ public class LockToTargetTankDrive extends PIDCommand {
 
         if (camInfo.hasTargets()) {
             double targetYaw = camInfo.findYawOfClosestTarget();
-            return -targetYaw;
+            return targetYaw;
         } else {
             return 0.0;
         }
@@ -135,7 +138,7 @@ public class LockToTargetTankDrive extends PIDCommand {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.visionPort == null;
     }
 
     // Called once after isFinished returns true
