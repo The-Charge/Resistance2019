@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2619.Resistance2019.commands.*;
 import org.usfirst.frc2619.Resistance2019.subsystems.*;
 import edu.wpi.first.cameraserver.*;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 
 /**
@@ -176,7 +177,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Elevator Target", elevator.getTarget());
         SmartDashboard.putBoolean("Elevator Alert", (!elevator.safeToElevatePositionUp()) || (!elevator.safeToElevatePositionDown()));
 
-        SmartDashboard.putBoolean("Extention Out", extension.isExtended());
+        SmartDashboard.putNumber("Match Time", DriverStation.getInstance().getMatchTime());
+        SmartDashboard.putBoolean("Extension Out", extension.isExtended());
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
         SmartDashboard.putBoolean("Hatch Grab", hatchers.isGrabberOut());
         SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
