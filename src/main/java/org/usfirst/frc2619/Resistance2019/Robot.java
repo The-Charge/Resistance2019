@@ -170,25 +170,28 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         SmartDashboard.putBoolean("Ball Detected", ballSensor.isBallSensed());
 
-        SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
-        SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
-        SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
-        SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
-        SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
         SmartDashboard.putBoolean("Any Sensor", sensorBar.isOneSensed());
 
         SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
-        SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
+        SmartDashboard.putNumber("Elevator Target", elevator.getTarget());
         SmartDashboard.putBoolean("Elevator Alert", (!elevator.safeToElevatePositionUp()) || (!elevator.safeToElevatePositionDown()));
 
         SmartDashboard.putBoolean("Extention Out", extension.isExtended());
-        SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
-        SmartDashboard.putBoolean("Collector Running In", intake.isRunningIn());
-        SmartDashboard.putBoolean("Shooter Running Out", shooter.isRunningOut());
-        SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
         SmartDashboard.putBoolean("Hatch Grab", hatchers.isGrabberOut());
         SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
+
+        
+        //SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
+        //SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
+        //SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
+        //SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
+        //SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
+        
+        //SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
+        //SmartDashboard.putBoolean("Collector Running In", intake.isRunningIn());
+        //SmartDashboard.putBoolean("Shooter Running Out", shooter.isRunningOut());
+        //SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
 	}
 
     /**
@@ -199,75 +202,21 @@ public class Robot extends TimedRobot {
     public void dashboardDebugValues() {
         SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
-        SmartDashboard.putBoolean("Can Elevator Move Up", elevator.safeToElevatePositionUp());
-        SmartDashboard.putBoolean("Can Elevator Move Down", elevator.safeToElevatePositionDown());
         SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());
         SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
         SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
-
+        /*
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
         if (tempDouble != driveTrain.MotionMagicP){
             driveTrain.MotionMagicP = tempDouble;
             rewriteInitialValues = true;
         }
-
-        tempDouble = driveTrain.MotionMagicI;
-        tempDouble = SmartDashboard.getNumber("Drive I", tempDouble);
-        if (tempDouble != driveTrain.MotionMagicI){
-            driveTrain.MotionMagicI = tempDouble;
-            rewriteInitialValues = true;
-        }
-
-        tempDouble = driveTrain.MotionMagicD;
-        tempDouble = SmartDashboard.getNumber("Drive D", tempDouble);
-        if (tempDouble != driveTrain.MotionMagicD){
-            driveTrain.MotionMagicD = tempDouble;
-            rewriteInitialValues = true;
-        }
-
-        tempDouble = driveTrain.correctionR;
-        tempDouble = SmartDashboard.getNumber("Drive Correction", tempDouble);
-        if (tempDouble != driveTrain.correctionR){
-            driveTrain.correctionR = tempDouble;
-            rewriteInitialValues = true;
-        }
-
-        int tempInt = driveTrain.MotionMagicVelocity;
-        tempInt = (int)SmartDashboard.getNumber("Drive V", tempInt);
-        if (tempInt != driveTrain.MotionMagicVelocity){
-            driveTrain.MotionMagicVelocity = tempInt;
-            rewriteInitialValues = true;
-        }
-
-        tempInt = driveTrain.MotionMagicAcceleration;
-        tempInt = (int)SmartDashboard.getNumber("Drive A", tempInt);
-        if (tempInt != driveTrain.MotionMagicAcceleration){
-            driveTrain.MotionMagicAcceleration = tempInt;
-            rewriteInitialValues = true;
-        }
-        
-        tempInt = elevator.SAFETY_LIMIT_TICKS;
-        tempInt = (int)SmartDashboard.getNumber("Safety Position", tempInt);
-        if (tempInt != elevator.SAFETY_LIMIT_TICKS){
-            elevator.SAFETY_LIMIT_TICKS = tempInt;
-            rewriteInitialValues = true;
-        }
-        
-
+        */
     }
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
-        SmartDashboard.putNumber("Timer", indicatorLights.lightTimer.get());
-        //DriveTrain live tunning:
-        SmartDashboard.putNumber("Drive V", driveTrain.MotionMagicVelocity);
-        SmartDashboard.putNumber("Drive A", driveTrain.MotionMagicAcceleration);
-        SmartDashboard.putNumber("Drive P", driveTrain.MotionMagicP);
-        SmartDashboard.putNumber("Drive I", driveTrain.MotionMagicI);
-        SmartDashboard.putNumber("Drive D", driveTrain.MotionMagicD);
-        SmartDashboard.putNumber("Drive Correction", driveTrain.correctionR);
-        SmartDashboard.putNumber("Safety Position", elevator.SAFETY_LIMIT_TICKS);
 
         //DriveTrain commands
         SmartDashboard.putData("InvertDrive", new InvertDrive());
