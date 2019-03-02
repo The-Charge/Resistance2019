@@ -175,6 +175,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
         SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
         SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
+        SmartDashboard.putBoolean("Any Sensor", sensorBar.isOneSensed());
 
         SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
         SmartDashboard.putNumber("Elevator Setpoint", elevator.getTarget());
