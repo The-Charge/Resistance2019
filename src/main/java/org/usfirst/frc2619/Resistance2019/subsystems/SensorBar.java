@@ -112,8 +112,6 @@ public class SensorBar extends Subsystem {
                 x = NUM_SENSORS;
             }
         }
-        SmartDashboard.putBoolean("Sensors", seesLine);
-        
         return seesLine;
     }
 
