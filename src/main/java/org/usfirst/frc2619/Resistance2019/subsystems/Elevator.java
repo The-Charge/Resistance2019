@@ -56,10 +56,10 @@ public class Elevator extends Subsystem {
 	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 1500;
 	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 1500;
 	private final static int MOTION_MAGIC_STRENGTH_CONSTANT = 8;
-	private final static double MOTION_MAGIC_P_CONSTANT = 2;
-	private final static double MOTION_MAGIC_I_CONSTANT = 0.0;
+	private final static double MOTION_MAGIC_P_CONSTANT = 0.1;
+	private final static double MOTION_MAGIC_I_CONSTANT = 0.0001;
 	private final static double MOTION_MAGIC_D_CONSTANT = 0.0;
-	private final static double MOTION_MAGIC_F_CONSTANT = 10;
+	private final static double MOTION_MAGIC_F_CONSTANT = 0.5;
 	
 	private static int TICKS_TO_TOP = 28000;
 	private static int TICKS_TO_BOTTOM = 200;

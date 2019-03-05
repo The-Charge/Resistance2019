@@ -168,10 +168,9 @@ public class Robot extends TimedRobot {
      * Add useful Dashboard values that are always nessesary
      */
     public void dashboardValues() {
-        SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         SmartDashboard.putBoolean("Ball Detected", ballSensor.isBallSensed());
-
         SmartDashboard.putBoolean("Any Sensor", sensorBar.isOneSensed());
+        SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 
         SmartDashboard.putNumber("Elevator Encoder", elevator.getTicks());
         SmartDashboard.putNumber("Elevator Target", elevator.getTarget());
@@ -181,14 +180,21 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Extension Out", extension.isExtended());
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
         SmartDashboard.putBoolean("Hatch Grab", hatchers.isGrabberOut());
-        SmartDashboard.putNumber("Yaw", driveTrain.getYaw());
 
         
-        //SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
-        //SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
-        //SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
-        //SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
-        //SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
+        SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
+        SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
+        SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
+        SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
+        SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
+        
+        SmartDashboard.putBoolean("RAW FL Sensor", sensorBar.isRawSensorTriggered(0));
+        SmartDashboard.putBoolean("RAW L Sensor", sensorBar.isRawSensorTriggered(1));
+        SmartDashboard.putBoolean("RAW M Sensor", sensorBar.isRawSensorTriggered(2));
+        SmartDashboard.putBoolean("RAW R Sensor", sensorBar.isRawSensorTriggered(3));
+        SmartDashboard.putBoolean("RAW FR Sensor", sensorBar.isRawSensorTriggered(4));
+
+        //SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         
         //SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
         //SmartDashboard.putBoolean("Collector Running In", intake.isRunningIn());
@@ -202,11 +208,11 @@ public class Robot extends TimedRobot {
      * This code could be improved with a dictionary
      */
     public void dashboardDebugValues() {
-        SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
-        SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
-        SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());
-        SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
-        SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
+        //SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
+        //SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
+        //SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());
+        //SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
+        //SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
         /*
         double tempDouble = driveTrain.MotionMagicP;
         tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
@@ -226,13 +232,13 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
         SmartDashboard.putData("LockStraight", new LockStraight());
         SmartDashboard.putData("TankDrive", new TankDrive());
-        SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
-        SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
-        SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
-        SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
+        //SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
+        //SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
+        //SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
+        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
+        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
+        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
+        //SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
         SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
         //SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
     
@@ -255,8 +261,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("HatchGrab", new HatchGrab());
         SmartDashboard.putData("HatchRelease", new HatchRelease());
         SmartDashboard.putData("RunHatchMotor", new RunHatchMotor());
-        SmartDashboard.putData("HatchUp", new HatchUp());
-        SmartDashboard.putData("HatchDown", new HatchDown());
+        //SmartDashboard.putData("HatchUp", new HatchUp());
+        //SmartDashboard.putData("HatchDown", new HatchDown());
 
         //Shooter commands
         SmartDashboard.putData("RunShooter Out", new RunShooter(0.5));
@@ -268,9 +274,7 @@ public class Robot extends TimedRobot {
 
         //Other commands
         SmartDashboard.putData("Climb", new Climb(0.5));
-        SmartDashboard.putData("Collect", new CollectCargo());
-        SmartDashboard.putData("ResetCollect", new ResetCollect());
-        SmartDashboard.putData("ToggleLight", new ToggleLight());
+        //SmartDashboard.putData("ToggleLight", new ToggleLight());
         //SmartDashboard.putData("UpdateLights", new UpdateLights());
         //SmartDashboard.putData("LightOn", new LightOn());
         }
