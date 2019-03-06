@@ -48,9 +48,11 @@ public class TopHatchConfig extends CommandGroup {
         addSequential(new ElevateToXPositionMotionMagic(0.99));
     }
     else{
+        addSequential(new HatchUp());
         addSequential(new Extend());
         addSequential(new ToLimitSwitch());
-        addSequential(new ElevateToXPositionMotionMagic(0.99));
+        addParallel(new DelayedElevateToXPosition(0.99));
+        addParallel(new HatchDown());
         addSequential(new Retract());
     } 
     } 

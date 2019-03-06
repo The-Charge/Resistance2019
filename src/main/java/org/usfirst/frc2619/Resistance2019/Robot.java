@@ -274,6 +274,9 @@ public class Robot extends TimedRobot {
 
         //Other commands
         SmartDashboard.putData("Climb", new Climb(0.5));
+        SmartDashboard.putData("MidHatchConfig", new MidHatchConfig());
+        SmartDashboard.putData("TopHatchConfig", new TopHatchConfig());
+        SmartDashboard.putData("GetHatchConfig", new GetHatchConfig());
         //SmartDashboard.putData("ToggleLight", new ToggleLight());
         //SmartDashboard.putData("UpdateLights", new UpdateLights());
         //SmartDashboard.putData("LightOn", new LightOn());

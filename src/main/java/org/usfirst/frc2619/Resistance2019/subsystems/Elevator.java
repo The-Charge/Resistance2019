@@ -55,6 +55,8 @@ public class Elevator extends Subsystem {
 	
 	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 1500;
 	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 1500;
+	private final static int HATCHERS_MOTION_MAGIC_VELOCITY_CONSTANT = 1500;
+	private final static int HATCHERS_MOTION_MAGIC_ACCELERATION_CONSTANT = 1500;
 	private final static int MOTION_MAGIC_STRENGTH_CONSTANT = 8;
 	private final static double MOTION_MAGIC_P_CONSTANT = 0.1;
 	private final static double MOTION_MAGIC_I_CONSTANT = 0.0001;
@@ -77,6 +79,8 @@ public class Elevator extends Subsystem {
     private double MotionMagicF = MOTION_MAGIC_F_CONSTANT;
     private int MotionMagicVelocity = MOTION_MAGIC_VELOCITY_CONSTANT;
 	private int MotionMagicAcceleration = MOTION_MAGIC_ACCELERATION_CONSTANT;
+    private int HatchersMotionMagicVelocity = HATCHERS_MOTION_MAGIC_VELOCITY_CONSTANT;
+	private int HatchersMotionMagicAcceleration = HATCHERS_MOTION_MAGIC_ACCELERATION_CONSTANT;
 	private int MotionMagicStrength = MOTION_MAGIC_STRENGTH_CONSTANT;
 	private int MAX_MOTION_MAGIC_DISTANCE = 100;
     private double MotionMagicDistance;
@@ -224,8 +228,13 @@ public class Elevator extends Subsystem {
 	    	motor.config_kF(MOTION_MAGIC_SLOT_DISTANCE_MODE, MotionMagicF, TIMEOUT_MS);
 	    	
 	    	
-	    	motor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
-			motor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
+			if (Robot.hatchers.isGrabberOut()){
+				motor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
+				motor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
+			}else{
+				motor.configMotionAcceleration(HatchersMotionMagicAcceleration, TIMEOUT_MS);
+				motor.configMotionCruiseVelocity(HatchersMotionMagicVelocity, TIMEOUT_MS);
+			}
 			motor.configMotionSCurveStrength(MotionMagicStrength, TIMEOUT_MS);
 	    	
 			percentDistance = MathUtil.clamp(percentDistance, 0, 1);
