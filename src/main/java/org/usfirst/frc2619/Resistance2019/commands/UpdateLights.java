@@ -44,14 +44,15 @@ public class UpdateLights extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.indicatorLights.ballSense();
-        //if (Robot.sensorBar.isOneSensed()){
-        //    Robot.indicatorLights.lightLineFollowOn(); 
-        //}
-        //else 
-        //{
-        //    Robot.indicatorLights.ballSense();
-        //} 
+        //Robot.indicatorLights.ballSense();
+        if (Robot.sensorBar.isOneSensed()){
+            Robot.indicatorLights.lightLineFollowOn(); 
+        }
+        else 
+        {
+            Robot.indicatorLights.ballSense();
+        
+        } 
 
         
     }
