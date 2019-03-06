@@ -181,19 +181,6 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Hatch Up", hatchers.isUp());
         SmartDashboard.putBoolean("Hatch Grab", hatchers.isGrabberOut());
 
-        
-        SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
-        SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
-        SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
-        SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
-        SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
-        
-        SmartDashboard.putBoolean("RAW FL Sensor", sensorBar.isRawSensorTriggered(0));
-        SmartDashboard.putBoolean("RAW L Sensor", sensorBar.isRawSensorTriggered(1));
-        SmartDashboard.putBoolean("RAW M Sensor", sensorBar.isRawSensorTriggered(2));
-        SmartDashboard.putBoolean("RAW R Sensor", sensorBar.isRawSensorTriggered(3));
-        SmartDashboard.putBoolean("RAW FR Sensor", sensorBar.isRawSensorTriggered(4));
-
         //SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
         
         //SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
@@ -225,13 +212,28 @@ public class Robot extends TimedRobot {
     
     public void writeInitialDashboardValues(){
         if (DEBUG){
+            //Debug
+            SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
+            SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
+            SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
+            SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
+            SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
+
+            
+
+        //SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
+        
+        //SmartDashboard.putBoolean("Colector Running Out", intake.isRunningOut());
+        //SmartDashboard.putBoolean("Collector Running In", intake.isRunningIn());
+        //SmartDashboard.putBoolean("Shooter Running Out", shooter.isRunningOut());
+        //SmartDashboard.putBoolean("Shooter Running In", shooter.isRunningIn());
 
         //DriveTrain commands
-        SmartDashboard.putData("InvertDrive", new InvertDrive());
-        SmartDashboard.putData("ShiftLow", new ShiftLow());
-        SmartDashboard.putData("ShiftHigh", new ShiftHigh());
-        SmartDashboard.putData("LockStraight", new LockStraight());
-        SmartDashboard.putData("TankDrive", new TankDrive());
+        //SmartDashboard.putData("InvertDrive", new InvertDrive());
+        //SmartDashboard.putData("ShiftLow", new ShiftLow());
+        //SmartDashboard.putData("ShiftHigh", new ShiftHigh());
+        //SmartDashboard.putData("LockStraight", new LockStraight());
+        //SmartDashboard.putData("TankDrive", new TankDrive());
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
@@ -239,7 +241,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
         //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
         //SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
-        SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
+        //SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
         //SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
     
         //Extension commands
@@ -277,6 +279,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("MidHatchConfig", new MidHatchConfig());
         SmartDashboard.putData("TopHatchConfig", new TopHatchConfig());
         SmartDashboard.putData("GetHatchConfig", new GetHatchConfig());
+        SmartDashboard.putData("CollectCargo", new CollectCargo());
+        SmartDashboard.putData("ResetCollect", new ResetCollect());
         //SmartDashboard.putData("ToggleLight", new ToggleLight());
         //SmartDashboard.putData("UpdateLights", new UpdateLights());
         //SmartDashboard.putData("LightOn", new LightOn());

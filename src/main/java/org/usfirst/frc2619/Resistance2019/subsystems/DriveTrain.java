@@ -332,10 +332,10 @@ public class DriveTrain extends Subsystem {
 
 	private void setNeutralMode(){
 		//Sets all the motors to brake mode when not in use
-		leftFrontMotor.setNeutralMode(NeutralMode.Brake);
-    	leftRearMotor.setNeutralMode(NeutralMode.Brake);
-    	rightFrontMotor.setNeutralMode(NeutralMode.Brake);
-    	rightRearMotor.setNeutralMode(NeutralMode.Brake);
+		leftFrontMotor.setNeutralMode(NeutralMode.Coast);
+    	leftRearMotor.setNeutralMode(NeutralMode.Coast);
+    	rightFrontMotor.setNeutralMode(NeutralMode.Coast);
+    	rightRearMotor.setNeutralMode(NeutralMode.Coast);
 	}
 
 	//gets the average current use of the two front motors

@@ -136,9 +136,9 @@ public class OI {
         reverseIntakeBtn = new JoystickButton(buttonBox, 11);
         reverseIntakeBtn.whileHeld(new ReverseLance());
         elevateCargoShipBtn = new JoystickButton(buttonBox, 9);
-        elevateCargoShipBtn.whenPressed(new ElevateToXPositionMotionMagic(0.55));
+        elevateCargoShipBtn.whenPressed(new ElevateCargoship());
         elevateMidRocketBtn = new JoystickButton(buttonBox, 7);
-        elevateMidRocketBtn.whenPressed(new ElevateToXPositionMotionMagic(0.838));
+        elevateMidRocketBtn.whenPressed(new ElevateMidRocket());
         shootBallBtn = new JoystickButton(buttonBox, 1);
         shootBallBtn.whileHeld(new RunShooter(0.4));
         overrideDownElevatorBtn = new JoystickButton(buttonBox, 3);

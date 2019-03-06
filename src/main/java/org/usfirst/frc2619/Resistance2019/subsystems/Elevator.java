@@ -64,7 +64,7 @@ public class Elevator extends Subsystem {
 	private final static double MOTION_MAGIC_F_CONSTANT = 0.5;
 	
 	private static int TICKS_TO_TOP = 28000;
-	private static int TICKS_TO_BOTTOM = 200;
+	private static int TICKS_TO_BOTTOM = 0;
 
     final int TIMEOUT_MS = 10;
 
