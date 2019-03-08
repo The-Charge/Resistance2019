@@ -30,6 +30,6 @@ public class GetHatchConfig extends ConditionalCommand {
 
     @Override
     protected boolean condition(){
-        return Robot.elevator.getTicks() < Robot.elevator.SAFETY_MID_TICKS;
+        return Robot.elevator.getTicks() < Robot.elevator.LANCE_HEIGHT_TICKS;
     }
 }
