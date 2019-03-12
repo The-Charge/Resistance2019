@@ -54,7 +54,7 @@ public class FastRetractDown extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        if (Robot.elevator.safeToRetract()){
+        if (Robot.elevator.safeToRetract() && Robot.elevator.getTicks() < Robot.elevator.LANCE_HEIGHT_TICKS){
             Robot.extension.retract();
         }
     }

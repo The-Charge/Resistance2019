@@ -142,7 +142,7 @@ public class OI {
         shootBallBtn = new JoystickButton(buttonBox, 1);
         shootBallBtn.whileHeld(new RunShooter(0.4));
         overrideDownElevatorBtn = new JoystickButton(buttonBox, 3);
-        overrideDownElevatorBtn.whileHeld(new OverrideElevator(-0.1));
+        overrideDownElevatorBtn.whileHeld(new OverrideElevator(-0.3));
         overrideUpElevatorBtn = new JoystickButton(buttonBox, 5);
         overrideUpElevatorBtn.whileHeld(new OverrideElevator(0.5));
 

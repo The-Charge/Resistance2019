@@ -38,7 +38,7 @@ public class HatchUp extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        this.setTimeout(2);
+        this.setTimeout(3);
         Robot.hatchers.HatchUp();
     }
 

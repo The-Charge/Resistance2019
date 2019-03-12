@@ -49,5 +49,6 @@ public class ElevateLowRocketSafety extends CommandGroup {
         addParallel(new FastRetractUp());//retracts ASAP
         addSequential(new ElevateToXPositionMotionMagic(0.32485));
         addSequential(new Retract());
+        addSequential(new FastRetractUp());//retracts ASAP
     } 
 }
