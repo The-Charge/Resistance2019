@@ -64,11 +64,14 @@ public class Climber extends Subsystem {
     {
         climberMotor.set(0);
     }
-    public boolean reached()
+    public boolean reached(boolean goingUp)
     {
         SmartDashboard.putNumber("Climber Motor", climberMotor.getEncoder().getPosition());
-        if (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB) return true;
-        else return false;
+        if (goingUp){
+            return (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB);
+        }else{
+            return (climberMotor.getEncoder().getPosition() < 0);
+        }
     }
     public void reset()
     {
