@@ -70,7 +70,7 @@ public class Climber extends Subsystem {
         if (goingUp){
             return (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB);
         }else{
-            return (climberMotor.getEncoder().getPosition() < 0);
+            return (climberMotor.getEncoder().getPosition() < 1);
         }
     }
     public void reset()
