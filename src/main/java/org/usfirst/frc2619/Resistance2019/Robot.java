@@ -204,6 +204,11 @@ public class Robot extends TimedRobot {
      * This code could be improved with a dictionary
      */
     public void dashboardDebugValues() {
+        SmartDashboard.putBoolean("FL Sensor", sensorBar.isSensorTriggered(0));
+            SmartDashboard.putBoolean("L Sensor", sensorBar.isSensorTriggered(1));
+            SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
+            SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
+            SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
         //SmartDashboard.putNumber("Drive Ticks", driveTrain.getEncoderTicks());
         //SmartDashboard.putNumber("Drive Target", driveTrain.MotionMagicDistanceTicks);
         //SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());

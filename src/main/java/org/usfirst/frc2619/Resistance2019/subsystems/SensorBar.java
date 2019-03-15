@@ -117,8 +117,7 @@ public class SensorBar extends Subsystem {
 
     public boolean isSensorTriggered(int idx)
     {
-        if (idx == 0 || idx == 4) return !sensBar[idx].get();
-        else return sensBar[idx].get();
+        return sensBar[idx].get();
     }
 
     public boolean isRawSensorTriggered(int idx){
