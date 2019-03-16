@@ -49,7 +49,7 @@ public class Hatchers extends Subsystem {
         
         
         
-        doubleSolenoid = new DoubleSolenoid(0, 0, 1);
+        doubleSolenoid = new DoubleSolenoid(0, 0, 7);
         addChild("DoubleSolenoid",doubleSolenoid);
         
         
