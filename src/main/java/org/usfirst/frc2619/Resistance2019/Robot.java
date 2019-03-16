@@ -58,7 +58,11 @@ public class Robot extends TimedRobot {
 
     public static boolean DEBUG = true;
     // BEGIN Debug values
-    public static boolean rewriteInitialValues = false;
+    public static boolean rewriteInitialValues = true;
+    public static double TurnP = 0.03;
+    public static double TurnI = 0.0;
+    public static double TurnD = 0.0;
+    public static double TurnMinSpeed = 0.2;
     // END Debug values
     public static SerialPort visionPort;
 
@@ -214,14 +218,35 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putBoolean("Safe to retract", elevator.safeToRetract());
         //SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
         //SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
-        /*
-        double tempDouble = driveTrain.MotionMagicP;
-        tempDouble = SmartDashboard.getNumber("Drive P", tempDouble);
-        if (tempDouble != driveTrain.MotionMagicP){
-            driveTrain.MotionMagicP = tempDouble;
+        
+        double tempDouble = TurnP;
+        tempDouble = SmartDashboard.getNumber("Turn P", tempDouble);
+        if (tempDouble != TurnP){
+            TurnP = tempDouble;
             rewriteInitialValues = true;
         }
-        */
+        
+        tempDouble = TurnI;
+        tempDouble = SmartDashboard.getNumber("Turn I", tempDouble);
+        if (tempDouble != TurnI){
+            TurnI = tempDouble;
+            rewriteInitialValues = true;
+        }
+        
+        tempDouble = TurnD;
+        tempDouble = SmartDashboard.getNumber("Turn D", tempDouble);
+        if (tempDouble != TurnD){
+            TurnD = tempDouble;
+            rewriteInitialValues = true;
+        }
+        
+        tempDouble = TurnMinSpeed;
+        tempDouble = SmartDashboard.getNumber("Turn MinSpeed", tempDouble);
+        if (tempDouble != TurnMinSpeed){
+            TurnMinSpeed = tempDouble;
+            rewriteInitialValues = true;
+        }
+        
     }
     
     public void writeInitialDashboardValues(){
@@ -232,7 +257,10 @@ public class Robot extends TimedRobot {
             SmartDashboard.putBoolean("M Sensor", sensorBar.isSensorTriggered(2));
             SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
             SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
-
+            SmartDashboard.putNumber("Turn P", TurnP);
+            SmartDashboard.putNumber("Turn I", TurnI);
+            SmartDashboard.putNumber("Turn D", TurnD);
+            SmartDashboard.putNumber("Turn MinSpeed", TurnMinSpeed);
             
 
         //SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
@@ -251,9 +279,8 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
-        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn180DegreesAbsolutePID", new TurnNDegreesAbsolutePID(180));
-        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90DegreesAbsolutePID", new TurnNDegreesAbsolutePID(90));
-        //SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0DegreesAbsolutePID", new TurnNDegreesAbsolutePID(0));
+        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90", new Orient(90));
+        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0", new Orient(0));
         //SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
         //SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
         //SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));
