@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     public static double TurnP = 0.03;
     public static double TurnI = 0.0;
     public static double TurnD = 0.0;
-    public static double TurnMinSpeed = 0.2;
+    public static double TurnMinSpeed = 0;
     // END Debug values
     public static SerialPort visionPort;
 
@@ -279,8 +279,8 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn90", new Orient(90));
-        SmartDashboard.putData("TurnNDegreesAbsolutePID: Turn0", new Orient(0));
+        SmartDashboard.putData("Orient: Turn90", new Orient(90));
+        SmartDashboard.putData("Orient: Turn0", new Orient(0));
         //SmartDashboard.putData("DriveToLine: default", new DriveToLine(0.2));
         //SmartDashboard.putData("PIDLineFollow", new PIDLineFollow());
         //SmartDashboard.putData("DriveToCurrent: default", new DriveToCurrent(0.1, 10));

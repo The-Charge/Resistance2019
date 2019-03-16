@@ -1669,7 +1669,7 @@ Children:
           parameters:
           - {name: targetAngle, type: double, value: '0'}
       Tolerance: !!robotbuilder.data.properties.DoubleProperty {default: 0.2, name: Tolerance,
-        validators: null, value: 1.0}
+        validators: null, value: 3.0}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
       I: !!robotbuilder.data.properties.DoubleProperty {default: 0, name: I, validators: null,
@@ -1681,7 +1681,7 @@ Children:
       Limit Input: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Limit Input, validators: null, value: true}
       Minimum Output: !!robotbuilder.data.properties.DoubleProperty {default: -1,
-        name: Minimum Output, validators: null, value: -0.5}
+        name: Minimum Output, validators: null, value: -0.8}
       P: !!robotbuilder.data.properties.DoubleProperty {default: 1, name: P, validators: null,
         value: 0.03}
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -2982,7 +2982,10 @@ Children:
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id020
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: To0
           parameters:
@@ -2991,14 +2994,11 @@ Children:
           name: To90
           parameters:
           - {name: angle, type: double, value: '90'}
-        name: Parameter presets
-        validators: null
-        value: *id020
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id021 []
+        default: []
         name: Commands
         validators: *id019
-        value: *id021
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
@@ -3024,9 +3024,9 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\kaedo\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\shiva\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\shiva\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\kaedo\FRCProjects',
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\shiva\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\workspace'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: None}

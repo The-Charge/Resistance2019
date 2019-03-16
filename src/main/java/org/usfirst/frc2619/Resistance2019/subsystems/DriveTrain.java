@@ -280,6 +280,13 @@ public class DriveTrain extends Subsystem {
 		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeed);
 	}
+
+	public void setPercentSpeedPID(double setSpeedL, double setSpeedR) {
+		setSpeedR = MathUtil.clamp(setSpeedR, -1, 1);
+		setSpeedL = MathUtil.clamp(setSpeedL, -1, 1);
+		leftFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeedL);
+		rightFrontMotor.set(ControlMode.Velocity, MAX_TICKS_PER_SECOND * setSpeedR);
+	}
 	
 	//gyro gets:
     public double getYaw() {
