@@ -59,10 +59,10 @@ public class Robot extends TimedRobot {
     public static boolean DEBUG = true;
     // BEGIN Debug values
     public static boolean rewriteInitialValues = true;
-    public static double TurnP = 0.03;
-    public static double TurnI = 0.0;
+    public static double TurnP = 0.0035;
+    public static double TurnI = 0.0000725;
     public static double TurnD = 0.0;
-    public static double TurnMinSpeed = 0;
+    public static double TurnMinSpeed = 0.19;
     // END Debug values
     public static SerialPort visionPort;
 
