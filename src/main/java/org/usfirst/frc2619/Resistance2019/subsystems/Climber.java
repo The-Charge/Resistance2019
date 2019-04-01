@@ -25,6 +25,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.jni.*;
 import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.InputMode;
 
 
@@ -34,13 +35,14 @@ import com.revrobotics.CANSparkMax.InputMode;
 public class Climber extends Subsystem {
 
     private CANSparkMax climberMotor;
-    private final double ROTATIONS_TO_CLIMB = 30;
+    private final double ROTATIONS_TO_CLIMB = 35;
     
 
     public Climber() {
      
         climberMotor = new CANSparkMax(20, MotorType.kBrushless);
         climberMotor.setSmartCurrentLimit(40);
+        setCoast();
        
     }
 
@@ -57,20 +59,22 @@ public class Climber extends Subsystem {
 
     public void run(double speed)
     {
+        climberMotor.setIdleMode(IdleMode.kCoast);
         climberMotor.set(speed);
         //SmartDashboard.putNumber("Velocity", climberMotor.getEncoder().getVelocity());
     }
     public void stop()
     {
         climberMotor.set(0);
+        setBrake();
     }
     public boolean reached(boolean goingUp)
     {
-        SmartDashboard.putNumber("Climber Motor", climberMotor.getEncoder().getPosition());
+        //SmartDashboard.putNumber("Climber Motor", getEncoderValue());
         if (goingUp){
-            return (climberMotor.getEncoder().getPosition() > ROTATIONS_TO_CLIMB);
+            return (climberMotor.getEncoder().getPosition() < -ROTATIONS_TO_CLIMB);
         }else{
-            return (climberMotor.getEncoder().getPosition() < 1);
+            return (climberMotor.getEncoder().getPosition() > 0);
         }
     }
     public void reset()
@@ -78,6 +82,21 @@ public class Climber extends Subsystem {
         climberMotor.getEncoder().setPosition(0);
     }
 
+    public double getEncoderValue(){
+        return climberMotor.getEncoder().getPosition();
+    }
+
+    public void setCoast(){
+        climberMotor.setIdleMode(IdleMode.kCoast);
+    }
+
+    public void setBrake(){
+        climberMotor.setIdleMode(IdleMode.kBrake);
+    }
+
+    public double getOutput(){
+        return climberMotor.get();
+    }
   
 }
 

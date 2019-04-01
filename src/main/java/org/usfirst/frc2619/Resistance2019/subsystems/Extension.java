@@ -92,10 +92,7 @@ public class Extension extends Subsystem {
 
     public boolean isExtended()
     {
-        //DO NOT REMOVE THE NOT NOT!!!!!
-        //NOTE: this is an easter egg
-        return ! ! limitSwitch.get();
-        //It is the greatest thing in history!!!!!
+        return ! limitSwitch.get();
     }
 
     public void toggle(){

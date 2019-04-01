@@ -71,6 +71,7 @@ public class OI {
     public JoystickButton lineFollowBtn;
     public JoystickButton climbBtn;
     public JoystickButton reverseClimbBtn;
+    public JoystickButton slowReverseClimbBtn;
     public JoystickButton orientBtn;
     public Joystick leftJoystick;
     public JoystickButton quarterSpeedBtn;
@@ -109,11 +110,13 @@ public class OI {
         leftJoystick = new Joystick(0);
         
         orientBtn = new JoystickButton(leftJoystick, 3);
-        orientBtn.whenPressed(new TurnNDegreesAbsolutePID(0));
+        orientBtn.whenPressed(new Orient(0));
+        slowReverseClimbBtn = new JoystickButton(leftJoystick, 10);
+        slowReverseClimbBtn.whileHeld(new Climb(0.2));
         reverseClimbBtn = new JoystickButton(leftJoystick, 12);
-        reverseClimbBtn.whileHeld(new Climb(-0.5));
+        reverseClimbBtn.whileHeld(new Climb(1));
         climbBtn = new JoystickButton(leftJoystick, 11);
-        climbBtn.whileHeld(new Climb(0.5));
+        climbBtn.whileHeld(new Climb(-1.0));
         lineFollowBtn = new JoystickButton(leftJoystick, 1);
         lineFollowBtn.whileHeld(new PIDLineFollow());
         lockStraightBtn = new JoystickButton(leftJoystick, 4);

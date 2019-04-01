@@ -91,9 +91,9 @@ public class PIDLineFollow extends PIDCommand {
         output = output / 3.5;
 
         if(output != 0){
-            Robot.driveTrain.writeIndivPIDs(output, output);
+            Robot.driveTrain.writeIndivPIDs(-output, output);
         }
-        else Robot.driveTrain.writeIndivPIDs(defaultPIDOuput, -defaultPIDOuput);
+        else Robot.driveTrain.writeIndivPIDs(defaultPIDOuput, defaultPIDOuput);
       
     }
     // Called just before this Command runs the first time
@@ -113,7 +113,7 @@ public class PIDLineFollow extends PIDCommand {
     @Override
     protected boolean isFinished() {
 
-        return Robot.driveTrain.getCurrentAmps() > 30;
+        return Robot.driveTrain.getCurrentAmps() > 17.5;
     }
 
     // Called once after isFinished returns true
