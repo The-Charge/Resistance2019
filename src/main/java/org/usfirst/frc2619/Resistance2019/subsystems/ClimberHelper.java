@@ -71,11 +71,11 @@ public class ClimberHelper extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void Extend()
+    public void Retract()
     {
         doubleSolenoid.set(DoubleSolenoid.Value.kForward);    
     }
-    public void Retract()
+    public void Extend()
     {
         doubleSolenoid.set(DoubleSolenoid.Value.kReverse);      
     }
