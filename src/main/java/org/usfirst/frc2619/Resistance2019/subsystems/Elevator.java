@@ -53,8 +53,8 @@ public class Elevator extends Subsystem {
 	
     private static final int MAX_TICKS_PER_SEC = 934;
 	
-	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 3000;
-	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 2000;
+	private final static int MOTION_MAGIC_VELOCITY_CONSTANT = 4000;
+	private final static int MOTION_MAGIC_ACCELERATION_CONSTANT = 3000;
 	private final static int HATCHERS_MOTION_MAGIC_VELOCITY_CONSTANT = 3000;
 	private final static int HATCHERS_MOTION_MAGIC_ACCELERATION_CONSTANT = 2000;
 	private final static int MOTION_MAGIC_STRENGTH_CONSTANT = 8;
@@ -82,7 +82,7 @@ public class Elevator extends Subsystem {
     private int HatchersMotionMagicVelocity = HATCHERS_MOTION_MAGIC_VELOCITY_CONSTANT;
 	private int HatchersMotionMagicAcceleration = HATCHERS_MOTION_MAGIC_ACCELERATION_CONSTANT;
 	private int MotionMagicStrength = MOTION_MAGIC_STRENGTH_CONSTANT;
-	private int MAX_MOTION_MAGIC_DISTANCE = 200;
+	private int MAX_MOTION_MAGIC_DISTANCE = 250;
     private double MotionMagicDistance;
 	private final static int PID_SLOT_SPEED_MODE = 1;
 	private final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 2;
