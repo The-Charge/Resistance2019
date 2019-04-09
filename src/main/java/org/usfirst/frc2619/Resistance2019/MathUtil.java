@@ -43,9 +43,9 @@ public class MathUtil {
 	
 	//Applies delinerization
 	public static double delin(double speed, double dead, double root, double pwr){
-		double evn = (pwr/root) % 2;
-		double invdB = Math.pow(1 - dead,-1);
-		double cons = pwr/root;
+		double evn = (pwr/root) % 2; // 1
+		double invdB = Math.pow(1 - dead,-1); // 1/0.9
+		double cons = pwr/root; // 3
 		if (speed != 0) { //Makes sure deadband doesn't bypass the calculations
 			if (speed > 0) //Speed is greater than zero and so there are no exceptions
 				return Math.pow(invdB * (speed - dead), cons);
