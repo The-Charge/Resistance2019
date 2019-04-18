@@ -48,7 +48,7 @@ public class CollectCargo extends CommandGroup {
         addParallel(new ElevateToXPositionMotionMagic(0.32));//will be interupted
         addParallel(new HatchUp());
         addSequential(new ToLimitSwitch());
-        addSequential(new ElevateToXPositionMotionMagic(0));
+        addSequential(new ElevateToXPositionMotionMagic(-0.05));
         addParallel(new RunIntake(0.9));
         addParallel(new RunShooter(-0.4));
     } 

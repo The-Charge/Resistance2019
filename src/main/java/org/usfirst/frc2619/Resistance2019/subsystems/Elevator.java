@@ -83,6 +83,7 @@ public class Elevator extends Subsystem {
 	private int HatchersMotionMagicAcceleration = HATCHERS_MOTION_MAGIC_ACCELERATION_CONSTANT;
 	private int MotionMagicStrength = MOTION_MAGIC_STRENGTH_CONSTANT;
 	private int MAX_MOTION_MAGIC_DISTANCE = 250;
+	private int MAX_MOTION_MAGIC_DISTANCE_COLLECT = 600;
     private double MotionMagicDistance;
 	private final static int PID_SLOT_SPEED_MODE = 1;
 	private final static int MOTION_MAGIC_SLOT_DISTANCE_MODE = 2;
@@ -91,7 +92,7 @@ public class Elevator extends Subsystem {
 	private double minSecsMinToFullThrottleIfDown = 1;
 
 	// NOTE: movable is becoming movableUp and movableDown
-	public int SAFETY_LIMIT_TICKS = 8900;//upper safety position
+	public int SAFETY_LIMIT_TICKS = 7000;//upper safety position
 	public int LANCE_HEIGHT_TICKS = 1540;//lower safety position
 	public int SAFETY_MID_TICKS = 4220;//mid safety position
     public boolean isUp = false;
@@ -162,6 +163,10 @@ public class Elevator extends Subsystem {
 	
 	public void set(double percentSpeed) {
 			motor.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * percentSpeed);
+	}
+
+	public void manual(double pow){
+		motor.set(pow);
 	}
 
 	public void stop() {
@@ -247,7 +252,7 @@ public class Elevator extends Subsystem {
 	//Checks if the elevator is within the error range
     public boolean isAtPIDDestination() {
 		double error = Math.abs(getPIDError());
-		return error < MAX_MOTION_MAGIC_DISTANCE || ( getTarget() < getTicks() ? !safeToElevatePositionDown() : !safeToElevatePositionUp()) || ( getTarget() < getTicks() ? checkBottomLimitSwitch() : checkTopLimitSwitch());
+		return ((getTarget() < 300) ? (error < MAX_MOTION_MAGIC_DISTANCE):(error < MAX_MOTION_MAGIC_DISTANCE_COLLECT)) || ( getTarget() < getTicks() ? !safeToElevatePositionDown() : !safeToElevatePositionUp()) || ( getTarget() < getTicks() ? checkBottomLimitSwitch() : checkTopLimitSwitch());
 	}
 
 	public double getPIDError(){

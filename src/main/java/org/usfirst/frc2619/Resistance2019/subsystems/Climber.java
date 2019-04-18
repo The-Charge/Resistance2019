@@ -41,7 +41,7 @@ public class Climber extends Subsystem {
     public Climber() {
      
         climberMotor = new CANSparkMax(20, MotorType.kBrushless);
-        climberMotor.setSmartCurrentLimit(40);
+        climberMotor.setSmartCurrentLimit(150);//40);
         setCoast();
        
     }

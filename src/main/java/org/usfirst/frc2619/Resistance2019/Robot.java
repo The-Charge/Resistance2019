@@ -115,6 +115,13 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Auto mode", chooser);
         writeInitialDashboardValues();
 
+        driveTrain.driveTrainInit();
+        
+
+
+
+
+
         //visionPort = VisionUtil.createSerialPort();
     }
 
@@ -137,6 +144,9 @@ public class Robot extends TimedRobot {
         hatchers.HatchIt();
         hatchers.HatchDown();
         climber.setBrake();
+
+     
+
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -227,7 +237,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putBoolean("Toplimit", hatchers.checkTopLimitSwitch());
         //SmartDashboard.putBoolean("Botlimit", hatchers.checkBottomLimitSwitch());
         
-        
+        /*
         double tempDouble = TurnP;
         tempDouble = SmartDashboard.getNumber("Turn P", tempDouble);
         if (tempDouble != TurnP){
@@ -255,7 +265,7 @@ public class Robot extends TimedRobot {
             TurnMinSpeed = tempDouble;
             rewriteInitialValues = true;
         }
-        
+        */
     }
     
     public void writeInitialDashboardValues(){
@@ -267,10 +277,10 @@ public class Robot extends TimedRobot {
             SmartDashboard.putBoolean("R Sensor", sensorBar.isSensorTriggered(3));
             SmartDashboard.putBoolean("FR Sensor", sensorBar.isSensorTriggered(4));
             
-            SmartDashboard.putNumber("Turn P", TurnP);
-            SmartDashboard.putNumber("Turn I", TurnI);
-            SmartDashboard.putNumber("Turn D", TurnD);
-            SmartDashboard.putNumber("Turn MinSpeed", TurnMinSpeed);
+            //SmartDashboard.putNumber("Turn P", TurnP);
+            //SmartDashboard.putNumber("Turn I", TurnI);
+            //SmartDashboard.putNumber("Turn D", TurnD);
+            //SmartDashboard.putNumber("Turn MinSpeed", TurnMinSpeed);
             
 
         //SmartDashboard.putNumber("Current", driveTrain.getCurrentAmps());
@@ -289,6 +299,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive3Feet", new DriveXFeetMotionMagic(3, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive2Feet", new DriveXFeetMotionMagic(2, 0, 0));
         //SmartDashboard.putData("DriveXFeetMotionMagic: Drive1foot", new DriveXFeetMotionMagic(1, 0, 0));
+        /*
         SmartDashboard.putData("Orient: Turn90", new Orient(90));
         SmartDashboard.putData("Orient: Turn90", new Orient(45));
         SmartDashboard.putData("Orient: Turn0", new Orient(0));
@@ -337,6 +348,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putData("ToggleLight", new ToggleLight());
         //SmartDashboard.putData("UpdateLights", new UpdateLights());
         //SmartDashboard.putData("LightOn", new LightOn());
+        */
         }
     }
 }

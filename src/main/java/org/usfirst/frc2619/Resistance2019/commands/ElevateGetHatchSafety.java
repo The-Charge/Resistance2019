@@ -48,10 +48,10 @@ public class ElevateGetHatchSafety extends CommandGroup {
         addSequential(new HatchRelease());
         addParallel(new HatchDown());
         addSequential(new Extend());
-        addParallel(new ElevateToXPositionMotionMagic(0.001));//will be interupted
+        addParallel(new ElevateToXPositionMotionMagic(0.0));//will be interupted
         addSequential(new ToLimitSwitch());
         addParallel(new FastRetractDown());//retracts ASAP
-        addSequential(new ElevateToXPositionMotionMagic(0.001));
+        addSequential(new ElevateToXPositionMotionMagic(0.0));
         addSequential(new Retract());
     } 
 }

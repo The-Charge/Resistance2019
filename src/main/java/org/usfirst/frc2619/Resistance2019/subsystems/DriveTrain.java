@@ -152,12 +152,30 @@ public class DriveTrain extends Subsystem {
 		//Set the right motors inverted
 		rightFrontMotor.setInverted(true);
 		rightRearMotor.setInverted(true);
-    }
+		
+		leftFrontMotor.configPeakCurrentLimit(80,1);
+		leftFrontMotor.configContinuousCurrentLimit(50);
+		leftFrontMotor.enableCurrentLimit(true);
+
+        //Set Current Limit
+		leftRearMotor.configPeakCurrentLimit(80,1);
+		leftRearMotor.configContinuousCurrentLimit(50);
+		leftRearMotor.enableCurrentLimit(true);
+
+		rightFrontMotor.configPeakCurrentLimit(80,1);
+		rightFrontMotor.configContinuousCurrentLimit(50);
+		rightFrontMotor.enableCurrentLimit(true);
+
+		rightRearMotor.configPeakCurrentLimit(80,1);
+		rightRearMotor.configContinuousCurrentLimit(50);
+		rightRearMotor.enableCurrentLimit(true);
+	}
 
 	//the basic run method for driving the robot. (Drive booleans are implimented here)
     public void run(double l, double r) {
     	double leftSpeed = l;
-    	double rightSpeed = r;
+		double rightSpeed = r;
+		
     	
     	if (quarterSpeed) {
 	    		leftSpeed = l *.25;

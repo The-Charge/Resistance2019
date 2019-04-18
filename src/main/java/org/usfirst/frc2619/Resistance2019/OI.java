@@ -75,6 +75,8 @@ public class OI {
     public JoystickButton orientBtn;
     public JoystickButton helpClimbBtn;
     public JoystickButton retractClimbBtn;
+    public JoystickButton reverseLanceBtn;
+    public JoystickButton lanceRetractBtn;
     public Joystick leftJoystick;
     public JoystickButton quarterSpeedBtn;
     public JoystickButton halfSpeedBtn;
@@ -111,6 +113,10 @@ public class OI {
         quarterSpeedBtn.whileHeld(new QuarterSpeed());
         leftJoystick = new Joystick(0);
         
+        lanceRetractBtn = new JoystickButton(leftJoystick, 7);
+        lanceRetractBtn.whenReleased(new Retract());
+        reverseLanceBtn = new JoystickButton(leftJoystick, 7);
+        reverseLanceBtn.whileHeld(new ReverseLance());
         retractClimbBtn = new JoystickButton(leftJoystick, 10);
         retractClimbBtn.whenPressed(new RetractClimb());
         helpClimbBtn = new JoystickButton(leftJoystick, 9);
@@ -146,7 +152,7 @@ public class OI {
         collectBtn = new JoystickButton(buttonBox, 2);
         collectBtn.whileHeld(new CollectCargo());
         reverseIntakeBtn = new JoystickButton(buttonBox, 11);
-        reverseIntakeBtn.whileHeld(new ReverseLance());
+        reverseIntakeBtn.whileHeld(new LanceManual());
         elevateCargoShipBtn = new JoystickButton(buttonBox, 9);
         elevateCargoShipBtn.whenPressed(new ElevateCargoship());
         elevateMidRocketBtn = new JoystickButton(buttonBox, 7);
