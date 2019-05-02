@@ -88,7 +88,7 @@ public class PIDLineFollow extends PIDCommand {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-        output = output / 3.5;
+        output = output / 1.5; //was 3.5
 
         if(output != 0){
             Robot.driveTrain.writeIndivPIDs(-output, output);

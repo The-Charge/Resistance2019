@@ -116,7 +116,8 @@ public class Robot extends TimedRobot {
         writeInitialDashboardValues();
 
         driveTrain.driveTrainInit();
-        
+        elevator.elevatorInit();
+        hatchers.hatchersInit();
 
 
 
