@@ -393,5 +393,19 @@ public class DriveTrain extends Subsystem {
 		return leftFrontMotor.getSelectedSensorVelocity();
 	}
 	
+	
+
+	//Subsystem functions for the GoToVisionTarget command to use
+	public void followPath(double firstDistance, double secondDistance, double firstTurnAngle, double secondTurnAngle) {
+		
+	}
+
+	public void driveXFeet(double distance) {
+
+	}
+
+	public void turnNDregrees(double turnAngle) {
+
+	}
 }
 
