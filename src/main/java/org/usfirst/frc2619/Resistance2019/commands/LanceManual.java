@@ -48,6 +48,6 @@ public class LanceManual extends CommandGroup {
     addSequential(new Extend());
     addParallel(new RunIntake(-1));
     addSequential(new ToLimitSwitch());
-    addSequential(new RunIntake(1));
+    addSequential(new RunIntake(-1));
     } 
 }
