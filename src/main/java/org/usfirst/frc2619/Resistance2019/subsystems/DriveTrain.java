@@ -393,5 +393,12 @@ public class DriveTrain extends Subsystem {
 		return leftFrontMotor.getSelectedSensorVelocity();
 	}
 	
+	public void driveToTarget(int length, int angle1, int angle2)
+	{
+		double x_coord = Math.cos(angle1)*length;
+		double y_coord = Math.sin(angle1)*length;
+		double directioin = (y_coord - Math.sin(angle2)*length/(Math.sin(Math.PI - angle1 - angle2)))/(x_coord);
+	}
+	
 }
 
